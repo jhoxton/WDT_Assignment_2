@@ -1,11 +1,62 @@
 ﻿<!DOCTYPE html>
+@*
+
+*@
 <html>
 <head>
     <meta charset="utf-8" />
     <title></title>
 </head>
 <body>
-             <a class ="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerSetStock">Set Stock(dynamic)</a> 
+
+            <h3>This is the owner inventory page</h3>
+      <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Stock Request ID
+                </th>
+                <th>
+                    Store Name
+                </th>
+                <th>
+                    Product Name
+                </th>
+                <th>
+                   Current Stock Level
+                </th>     
+                <th>
+                    Process Stock Request      
+                 </th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+                <tr>
+                    <td>
+                        SAMPLE REQUEST ID
+                    </td>
+                    <td>
+                        SAMPLE STORE NAME
+                    </td>
+                    <td>
+                        SAMPLE PRODUCT NAME
+                    </td>
+                    <td>
+                        SAMPLE CURRENT STOCK
+                    </td>                    
+                    <td>
+                        
+                            <a asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Process Stock Request</a> 
+                            @* Make this a button???*@
+                        
+                    </td>
+                </tr>
+
+        </tbody>
+    </table>
+
         
             <a class ="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Home Page</a> 
 </body>
