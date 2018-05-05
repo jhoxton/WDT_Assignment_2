@@ -15,5 +15,29 @@ namespace WDT_Assignment_2.Controllers
         {
             return View();
         }
+        public IActionResult CustomerStoreSelect()
+        {
+            return View();
+        }
+        public IActionResult CustomerViewCart()
+        {
+            return View();
+        }
+        public IActionResult CustomerPurchaseHistory()
+        {
+            return View();
+        }
+        public IActionResult CustomerDisplayInventory()
+        {
+            return View();
+        }
+        public IActionResult CustomerCheckOut()
+        {
+            return View();
+        }
+        public IActionResult CustomerConfirmPurchase()
+        {
+            return View();
+        }
     }
 }
