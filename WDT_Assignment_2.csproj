@@ -17,4 +17,7 @@
     <Folder Include="Views\Franchise\" />
     <Folder Include="Views\Customer\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\Owner\OwnerProcessStockRequest.cshmtl" />
+  </ItemGroup>
 </Project>

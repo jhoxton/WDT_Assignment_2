@@ -13,8 +13,8 @@ namespace WDT_Assignment_2.Controllers
         /* GET: /<controller>/
         /The below is the method used to return the view, so do one for each view page
         *In owner, that is:
-         * OwnerIndex
-         * Inventory
+
+         * OwnerInventory
          * SetStock
          * StockRequest
          */
@@ -22,6 +22,19 @@ namespace WDT_Assignment_2.Controllers
         public IActionResult OwnerIndex() 
         {
             ViewData["Message"] = "Hello from my first view and controller!";
+            return View();
+        }
+
+        public IActionResult OwnerInventory()
+        {
+            return View();
+        }
+        public IActionResult OwnerProcessStockRequest()
+        {
+            return View();
+        }
+        public IActionResult OwnerSetStock()
+        {
             return View();
         }
     }
