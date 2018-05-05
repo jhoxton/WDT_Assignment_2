@@ -14,5 +14,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Owner\" />
+    <Folder Include="Views\Franchise\" />
+    <Folder Include="Views\Customer\" />
   </ItemGroup>
 </Project>
