@@ -5,6 +5,49 @@
     <title></title>
 </head>
 <body>
+     <h3>STORE INVENTORY PAGE</h3>
+      <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    ProductID
+                </th>
+                <th>
+                    Product Name
+                </th>
+                <th>
+                   Current Stock Level
+                </th>
+                <th>
+                    Set Stock Level       
+                 </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @*
+              Foreach loop to dynamically generate products here  
+           *@
+                <tr>
+                    <td>
+                        SAMPLE ID
+                    </td>
+                    <td>
+                        SAMPLE NAME
+                    </td>
+                    <td>
+                        SAMPLE QUANTITY
+                    </td>
+                    <td>
+                        
+                            <a asp-area="" asp-controller="Franchise" asp-action="FranchiseSetStock">Set Item Stock Level</a> 
+                            @* Make this a button???*@
+                        
+                    </td>
+                </tr>
+
+        </tbody>
+    </table>
         <div>  <a class ="linkButton" asp-area="" asp-controller="Franchise" asp-action="FranchiseIndex">Home Page</a> </div>
 
 </body>
