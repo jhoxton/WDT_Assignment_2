@@ -42,7 +42,7 @@ namespace WDT_Assignment_2
             {
                 //routes.MapRoute(
                     //name: "default",
-                    //template: "{controller=Owner}/{action=OwnerIndex}/{id?}");
+                    //template: "{controller=Home}/{action=OwnerIndex}/{id?}");
 
                 routes.MapRoute(
                     name: "default",

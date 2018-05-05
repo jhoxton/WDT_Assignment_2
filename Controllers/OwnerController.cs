@@ -19,8 +19,9 @@ namespace WDT_Assignment_2.Controllers
          * StockRequest
          */
 
-        public IActionResult Index() 
+        public IActionResult OwnerIndex() 
         {
+            ViewData["Message"] = "Hello from my first view and controller!";
             return View();
         }
     }
