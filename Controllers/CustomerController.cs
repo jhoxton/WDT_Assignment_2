@@ -11,7 +11,7 @@ namespace WDT_Assignment_2.Controllers
     public class CustomerController : Controller
     {
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult CustomerIndex()
         {
             return View();
         }

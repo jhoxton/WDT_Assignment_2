@@ -40,13 +40,13 @@ namespace WDT_Assignment_2
 
             app.UseMvc(routes =>
             {
-                //routes.MapRoute(
-                    //name: "default",
-                    //template: "{controller=Home}/{action=OwnerIndex}/{id?}");
-
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Login}/{id?}");
+
+                //routes.MapRoute(
+                    //name: "default",
+                    //template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
