@@ -15,5 +15,22 @@ namespace WDT_Assignment_2.Controllers
         {
             return View();
         }
+
+        public IActionResult FranchiseInventory()
+        {
+            return View();
+        }
+        public IActionResult FranchiseStockRequest()
+        {
+            return View();
+        }
+        public IActionResult FranchiseSetStock()
+        {
+            return View();
+        }
+        public IActionResult FranchiseNewItem()
+        {
+            return View();
+        }
     }
 }

@@ -11,13 +11,8 @@ namespace WDT_Assignment_2.Controllers
     public class OwnerController : Controller
     {
         /* GET: /<controller>/
-        /The below is the method used to return the view, so do one for each view page
-        *In owner, that is:
-
-         * OwnerInventory
-         * SetStock
-         * StockRequest
-         */
+       /The below is the method used to return the view, so do one for each view page
+        */
 
         public IActionResult OwnerIndex() 
         {
