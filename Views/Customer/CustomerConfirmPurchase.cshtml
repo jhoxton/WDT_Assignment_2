@@ -7,7 +7,48 @@
 <body>
         <div>
             <div>
-                <p>Last Made Purchase Goes Here</p>
+                <h3>Order Confirmed</h3>
+                         <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            ProductID
+                        </th>
+                        <th>
+                            Product Name
+                        </th>
+
+                        <th>
+                            Quantity   
+                         </th>  
+                         <th>
+                            Date and Time 
+                         </th>    
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @*
+                      Foreach loop to dynamically generate products here  
+                   *@
+                        <tr>
+                            <td>
+                                SAMPLE ID
+                            </td>
+                            <td>
+                                SAMPLE NAME
+                            </td>
+                            <td>
+                                SAMPLE QUNATITY
+                                @* Need to set max value as current stores stock level*@
+                            </td>
+                           <td>
+                                SAMPLE DATE AND TIME
+                            </td>
+                        </tr>
+
+                </tbody>
+            </table>                
             </div>
             <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerPurchaseHistory">View Purchase History</a> 
             <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a> 

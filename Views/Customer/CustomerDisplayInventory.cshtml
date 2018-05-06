@@ -1,12 +1,59 @@
 ﻿<!DOCTYPE html>
+@*
+http://localhost:5000/Customer/CustomerDisplayInventory
+*@
 <html>
 <head>
     <meta charset="utf-8" />
     <title></title>
 </head>
 <body>
-        <div>
-            <p>Table of products goes here</p>
+    <div>
+         <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            ProductID
+                        </th>
+                        <th>
+                            Product Name
+                        </th>
+                        <th>
+                           Current Stock Level
+                        </th>
+                        <th>
+                            Select Quantity   
+                         </th>      
+                            <th>
+                               Add to Cart 
+                            </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @*
+                      Foreach loop to dynamically generate products here  
+                   *@
+                        <tr>
+                            <td>
+                                SAMPLE ID
+                            </td>
+                            <td>
+                                SAMPLE NAME
+                            </td>
+                            <td>
+                                SAMPLE CURRENT STOCK LEVEL
+                            </td>
+                            <td>
+                                <input type="number" name="quantity" min="1" max="100" value="Add">    
+                                @* Need to set max value as current stores stock level*@
+                            </td>
+                            <td>
+                             <input type="submit"> 
+                            </td>
+                        </tr>
+
+                </tbody>
+            </table>
             <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerViewCart">View Cart</a> 
             <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerStoreSelect">Change Store</a>  
         </div>
