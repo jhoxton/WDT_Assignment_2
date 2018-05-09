@@ -7,10 +7,11 @@ namespace WDT_Assignment_2.Models
     public class StockRequest
     {
         [Display(Name = "StockRequstID")]
-        //OR StockRequstID
+      
         public int StockRequestID { get; set; }
 
         public int StoreID { get; set; }
+
         public Store Store { get; set; }
 
         public int ProductID { get; set; }

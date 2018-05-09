@@ -46,14 +46,24 @@ namespace WDT_Assignment_2.Controllers
             //Creates a local var of StockRequests from _context
             var StockRequests = _context.StockRequests;
 
-            foreach(var getStoreName in StockRequests) {  //THIS WILL NEED TO ACCESS THE STORE CONTROL ASPECT
-                int loopID = getStoreName.StoreID;
-
-                if (loopID ==1 ) {
-                   
-                    Console.WriteLine("FFFUUUCKKK");
+            foreach(var getStoreName in StockRequests) {  
+                
+                foreach(Store storeCheck in _context.Stores) {
+                    if(getStoreName.StoreID == storeCheck.StoreID){
+                        getStoreName.Store = storeCheck;
+                    }
                 }
+            }
+            foreach (var getStoreName in StockRequests)
+            {  
 
+                foreach (Product productCheck in _context.Products)
+                {
+                    if (getStoreName.ProductID == productCheck.ProductID)
+                    {
+                        getStoreName.Product = productCheck;
+                    }
+                }
             }
 
             //Sends said var to the View
