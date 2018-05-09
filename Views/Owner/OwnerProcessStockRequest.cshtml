@@ -1,12 +1,10 @@
-﻿<!DOCTYPE html>
-@*
+﻿@model IEnumerable<StockRequest>
+@* OR THE FULL FILE PATH*@
 
-*@
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
+@{
+    ViewData["Title"] = "StockRequests";
+}
+
 <body>
 
             <h3>This is the owner inventory page</h3>
@@ -56,8 +54,45 @@
 
         </tbody>
     </table>
-
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StockRequestID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Store)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>                 
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StockRequestID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Store)
+                </td>                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+ 
+            </tr>
+        }
+    </tbody>
+</table>
         
             <a class ="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Home Page</a> 
 </body>
-</html>

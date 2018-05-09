@@ -22,6 +22,7 @@
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Views\Owner\OwnerProcessStockRequest.cshmtl" />
+
+        
   </ItemGroup>
 </Project>

@@ -1,8 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace WDT_Assignment_2.Models
 {
     public class StockRequest
     {
+        [Display(Name = "StockRequstID")]
+        //OR StockRequstID
         public int StockRequestID { get; set; }
 
         public int StoreID { get; set; }

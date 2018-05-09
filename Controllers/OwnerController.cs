@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +40,26 @@ namespace WDT_Assignment_2.Controllers
             // Passing a List<OwnerInventory> model object to the View.
             return View(await query.ToListAsync());
         }
+        // GET: StockRequests
+        public async Task<IActionResult> OwnerProcessStockRequest()
+        {
+            //Creates a local var of StockRequests from _context
+            var StockRequests = _context.StockRequests;
+
+            foreach(var getStoreName in StockRequests) {  //THIS WILL NEED TO ACCESS THE STORE CONTROL ASPECT
+                int loopID = getStoreName.StoreID;
+
+                if (loopID ==1 ) {
+                   
+                    Console.WriteLine("FFFUUUCKKK");
+                }
+
+            }
+
+            //Sends said var to the View
+            return View(await StockRequests.ToListAsync());
+        }
+
 
         /* GET: /<controller>/
        /The below is the method used to return the view, so do one for each view page
@@ -54,10 +75,10 @@ namespace WDT_Assignment_2.Controllers
         //{
         //    return View();
         //}
-        public IActionResult OwnerProcessStockRequest()
-        {
-            return View();
-        }
+        //public IActionResult OwnerProcessStockRequest()
+        //{
+        //    return View();
+        //}
         public IActionResult OwnerSetStock()
         {
             return View();
