@@ -18,6 +18,7 @@ namespace WDT_Assignment_2.Controllers
             _context = context;
         }
 
+        //This method taken from Lecture 6 code example
         // Auto-parsed variables coming in from the request - there is a form on the page to send this data.
         public async Task<IActionResult> OwnerInventory(string productName)
         {
@@ -40,6 +41,7 @@ namespace WDT_Assignment_2.Controllers
             // Passing a List<OwnerInventory> model object to the View.
             return View(await query.ToListAsync());
         }
+
         // GET: StockRequests
         public async Task<IActionResult> OwnerProcessStockRequest()
         {
@@ -70,10 +72,52 @@ namespace WDT_Assignment_2.Controllers
             return View(await StockRequests.ToListAsync());
         }
 
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var requestProcess = await _context.StockRequests.SingleOrDefaultAsync(m => m.StockRequestID == id);
 
-        /* GET: /<controller>/
-       /The below is the method used to return the view, so do one for each view page
-        */
+            int quantCrossCheck = requestProcess.Quantity;
+
+            //Checking valid owner stock level
+            foreach(var ownerQuant in _context.OwnerInventory.ToList()) {
+                if(quantCrossCheck > ownerQuant.StockLevel) {
+                    
+                   //PRINT SOMETHING HERE
+                    //USE ToList() here for the Store Inventory I guess
+                } else {
+
+                    foreach(Store updateStore in _context.Stores) {
+                        if(updateStore.StoreID == requestProcess.StoreID) {
+
+
+
+                            foreach(var loopInv in updateStore.StoreInventory) {
+                                if(requestProcess.ProductID == loopInv.ProductID){
+                                    loopInv.StockLevel = (loopInv.StockLevel + requestProcess.Quantity);
+
+                                    _context.Stores.Update(updateStore);
+                                }    
+                            }
+                        }
+                    }
+
+                    //Removes the stock request
+                    _context.StockRequests.Remove(requestProcess);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(OwnerProcessStockRequest));
+
+            //NEED TO UPDATE RELEVENT STORE STOCK AND SUBTRACT FROM OWNERS INV
+
+                }
+            }
+
+            return View();
+ 
+        }
+       
+  
+       
 
         public IActionResult OwnerIndex() 
         {

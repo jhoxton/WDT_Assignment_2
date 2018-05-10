@@ -88,6 +88,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Quantity)
                 </td>
+                <td>                    
+                <a asp-action="DeleteConfirmed" asp-route-id="@item.StockRequestID">Delete</a></td>
  
             </tr>
         }
