@@ -86,19 +86,13 @@ namespace WDT_Assignment_2.Controllers
                     //USE ToList() here for the Store Inventory I guess
                 } else {
 
-                    //int storeID = requestProcess.StoreID;
 
-                    //var storeInventory = await _context.StoreInventory.SingleAsync(x => x.StoreID == storeID && x.ProductID == id);
 
-                    //storeInventory.StockLevel = requestProcess.Quantity + storeInventory.StockLevel;
-
-                    //await _context.SaveChangesAsync();
-
-                    //Removes the stock request
+                    //Updates the store inventory
                     await updateStore(requestProcess.StoreID, requestProcess);
+                    //Removes the stock request
                     _context.StockRequests.Remove(requestProcess);
                     await _context.SaveChangesAsync();
-
                     return RedirectToAction(nameof(OwnerProcessStockRequest));
 
             //NEED TO UPDATE RELEVENT STORE STOCK AND SUBTRACT FROM OWNERS INV
@@ -119,7 +113,7 @@ namespace WDT_Assignment_2.Controllers
             storeInventory.StockLevel = requestProcess.Quantity + storeInventory.StockLevel;
 
             await _context.SaveChangesAsync();
-            return "";
+            return " ";
         }
     
        
@@ -130,14 +124,6 @@ namespace WDT_Assignment_2.Controllers
             return View();
         }
 
-        //public IActionResult OwnerInventory()
-        //{
-        //    return View();
-        //}
-        //public IActionResult OwnerProcessStockRequest()
-        //{
-        //    return View();
-        //}
         public IActionResult OwnerSetStock()
         {
             return View();

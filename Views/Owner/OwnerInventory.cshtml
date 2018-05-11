@@ -3,7 +3,7 @@
 @model IEnumerable<OwnerInventory>
 
 @{
-    ViewBag.Title = "Owner Inventory";
+    ViewBag.Title = "Product";
 }
 <html>
 <head>
@@ -46,7 +46,7 @@
                     </td>
                     <td>
                         
-                            <a asp-area="" asp-controller="Owner" asp-action="OwnerSetStock">Set Item Stock Level</a> 
+                        <a asp-area="" asp-controller="Owner" asp-action="OwnerSetStock">Set Item Stock Level</a> 
                             @* Make this a button???*@
                         
                     </td>
@@ -79,6 +79,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.StockLevel)
             </th>
+                                    <th>
+                    Set Stock Level       
+                 </th>
             <th></th>
         </tr>
     </thead>
@@ -94,6 +97,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.StockLevel)
                 </td>
+                     <td>
+                        
+                         
+               <a asp-area="" asp-controller="Owner" asp-action="@item.ProductID">Set Item Stock Level</a>
+                            @* Make this a button???*@
+                        
+                    </td>
             </tr>
         }
     </tbody>
