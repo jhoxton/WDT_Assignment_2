@@ -16,6 +16,7 @@ namespace WDT_Assignment_2
 {
     public class Startup
     {
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -34,6 +35,7 @@ namespace WDT_Assignment_2
             
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
+               
                 options.Password.RequiredLength = 3;
                 options.Password.RequireDigit = options.Password.RequireNonAlphanumeric =
                 options.Password.RequireUppercase = options.Password.RequireLowercase = false;
@@ -46,6 +48,7 @@ namespace WDT_Assignment_2
             });
 
             services.AddMvc();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,14 +66,18 @@ namespace WDT_Assignment_2
             app.UseStaticFiles();
             app.UseAuthentication();
 
+
+
             app.UseMvc(routes =>
             {
+                
                 routes.MapRoute(
-
+                    
                     name: "default",
-                    template: "{controller=Home}/{action=Login}/{id?}"
+                    template: "{controller=Home}/{action=Index}/{id?}"
                 );
             });
         }
+
     }
 }
