@@ -50,8 +50,9 @@
                 </td>
                      <td>
                         
-               @*<a asp-area="" asp-controller="Owner" asp-action="@item.ProductID">Set Item Stock Level</a>       *@   
-               <a asp-controller="Owner" asp-action="OwnerSetStock" asp-route-area= "">Set Item Stock Level</a>
+               @*<a asp-area="" asp-controller="Owner" asp-action="@item.ProductID">Set Item Stock Level</a>          
+               <a asp-controller="Owner" asp-action="OwnerSetStock" asp-route-area= "">Set Item Stock Level</a>*@
+                 <a asp-action="OwnerSetStock" asp-route-id="@item.ProductID">Set Item Stock Level</a>
 
 
                         

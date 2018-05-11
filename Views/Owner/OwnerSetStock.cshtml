@@ -1,12 +1,11 @@
-﻿@model IEnumerable<OwnerInventory>
+﻿
+@model WDT_Assignment_2.Models.OwnerInventory
 
 @*
 http://localhost:5000/Owner/OwnerSetStock
 
 *@
-
-
-                  
+      
       <h3>Set Item Stock Level</h3>
       <table class="table">
         <thead>
@@ -45,5 +44,16 @@ http://localhost:5000/Owner/OwnerSetStock
         </tbody>
     </table>
 
-        
+<form asp-action="OwnerSetStock">   
+    <div class="form-group">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <label asp-for="ProductID" class="control-label"></label>
+               <input asp-for="ProductID" class="form-control" />
+ 
+            </div>
+        </form>
       <a class ="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Home Page</a> 
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -128,14 +128,14 @@ namespace WDT_Assignment_2.Controllers
             return View();
         }
 
-        public IActionResult OwnerSetStock( int id)
-        {   
+        public async Task<IActionResult> OwnerSetStock(int? id)
+        {  
             //Take id that is passed here and use it to display said item in the view. Hopefully
            
-           
-            var product = _context.OwnerInventory.SingleOrDefaultAsync(m => m.ProductID == id);
+            //var movie = await _context.OwnerInventory.SingleOrDefaultAsync(m => m.ID == id);
+            var product = await _context.OwnerInventory.SingleOrDefaultAsync(m => m.ProductID == id);
 
-            return View();
+            return View(product);
         }
     }
 }
