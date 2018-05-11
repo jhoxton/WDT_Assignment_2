@@ -86,22 +86,16 @@ namespace WDT_Assignment_2.Controllers
                     //USE ToList() here for the Store Inventory I guess
                 } else {
 
-                    foreach(Store updateStore in _context.Stores) {
-                        if(updateStore.StoreID == requestProcess.StoreID) {
+                    //int storeID = requestProcess.StoreID;
 
+                    //var storeInventory = await _context.StoreInventory.SingleAsync(x => x.StoreID == storeID && x.ProductID == id);
 
+                    //storeInventory.StockLevel = requestProcess.Quantity + storeInventory.StockLevel;
 
-                            foreach(var loopInv in updateStore.StoreInventory) {
-                                if(requestProcess.ProductID == loopInv.ProductID){
-                                    loopInv.StockLevel = (loopInv.StockLevel + requestProcess.Quantity);
-
-                                    _context.Stores.Update(updateStore);
-                                }    
-                            }
-                        }
-                    }
+                    //await _context.SaveChangesAsync();
 
                     //Removes the stock request
+                    await updateStore(requestProcess.StoreID, requestProcess);
                     _context.StockRequests.Remove(requestProcess);
                     await _context.SaveChangesAsync();
 
@@ -116,7 +110,18 @@ namespace WDT_Assignment_2.Controllers
  
         }
        
-  
+        public async Task <String> updateStore(int id, StockRequest requestProcess) {
+            
+            int storeID = requestProcess.StoreID;
+
+            var storeInventory = await _context.StoreInventory.SingleAsync(x => x.StoreID == storeID && x.ProductID == id);
+
+            storeInventory.StockLevel = requestProcess.Quantity + storeInventory.StockLevel;
+
+            await _context.SaveChangesAsync();
+            return "";
+        }
+    
        
 
         public IActionResult OwnerIndex() 
