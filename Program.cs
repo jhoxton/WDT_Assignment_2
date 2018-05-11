@@ -24,7 +24,7 @@ namespace WDT_Assignment_2
 
                 try
                 {
-                    SeedData.Initialize(services);
+                    SeedData.Initialize(services).Wait();
                 }
                 catch (Exception ex)
                 {

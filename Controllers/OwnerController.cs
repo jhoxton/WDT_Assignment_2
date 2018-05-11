@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WDT_Assignment_2.Models;
+using WDT_Assignment_2.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WDT_Assignment_2.Controllers
 {
+    [Authorize(Roles = Constants.OwnerRole)]
     public class OwnerController : Controller
     {
         private readonly Context _context;
@@ -19,6 +22,7 @@ namespace WDT_Assignment_2.Controllers
         }
 
         //This method taken from Lecture 6 code example
+
         // Auto-parsed variables coming in from the request - there is a form on the page to send this data.
         public async Task<IActionResult> OwnerInventory(string productName)
         {
@@ -120,13 +124,16 @@ namespace WDT_Assignment_2.Controllers
 
         public IActionResult OwnerIndex() 
         {
-            ViewData["Message"] = "Hello from my first view and controller!";
+            ViewData["Message"] = " ";
             return View();
         }
 
-        public IActionResult OwnerSetStock()
-        {
-            return View();
+        public IActionResult OwnerSetStock( int id)
+        {   
+            
+            var product = _context.OwnerInventory.SingleOrDefaultAsync(m => m.ProductID == id);
+
+            return View(id);
         }
     }
 }

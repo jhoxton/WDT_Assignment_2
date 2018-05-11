@@ -1,14 +1,9 @@
-﻿
+﻿@item.ProductID
 @*
 http://localhost:5000/Owner/OwnerSetStock
 *@
 
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+
                   
       <h3>Set Item Stock Level</h3>
       <table class="table">
@@ -33,7 +28,7 @@ http://localhost:5000/Owner/OwnerSetStock
            *@
                 <tr>
                     <td>
-                       
+                       @Html.DisplayFor(modelItem => item.ProductID)
                     </td>
                     <td>
                          <input type="number" name="quantity" min="1" max="100">      
@@ -49,5 +44,3 @@ http://localhost:5000/Owner/OwnerSetStock
 
         
       <a class ="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Home Page</a> 
-</body>
-</html>

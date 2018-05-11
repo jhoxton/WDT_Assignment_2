@@ -20,6 +20,13 @@
     <Folder Include="Views\Franchise\" />
     <Folder Include="Views\Customer\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Manage\" />
+    <Folder Include="Models\AccountViewModels\" />
+    <Folder Include="Models\ManageViewModels\" />
+    <Folder Include="Services\" />
+    <Folder Include="Extenstions\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
 
