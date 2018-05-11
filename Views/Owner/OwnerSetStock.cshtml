@@ -11,49 +11,47 @@ http://localhost:5000/Owner/OwnerSetStock
         <thead>
             <tr>
                 <th>
-                    Item Name
+                    Product ID
+                </th>
+            <th>
+                    Product Name
                 </th>
                 <th>
-                    Quantity
+                    Current Stock Level
                 </th>
                 <th>
-
+                    Quantity to restock
                 </th>
 
 
             </tr>
         </thead>
         <tbody>
-            @*
-            dynamically generate selected item here  
-           *@
 
                 <tr>
                     <td>
-
+                    <div  asp-for="ProductID"></div>
+                         @Html.DisplayFor(model => model.ProductID)
+                    <td>
+                PRODUCT NAME HERE  
+              
+                
+            </td>
+            <td>
+                         @Html.DisplayFor(model => model.StockLevel)
                     </td>
                     <td>
-                         <input type="number" name="quantity" min="1" max="100">      
+                        <input type="number" name="quantity" min="1" max="100">      
                     </td>
-                    <td>
-                        <input type="submit"> 
-                    </td>
+            <td>
+                <input type="submit"> 
+            </td>
 
                 </tr>
 
         </tbody>
     </table>
 
-<form asp-action="OwnerSetStock">   
-    <div class="form-group">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <label asp-for="ProductID" class="control-label"></label>
-               <input asp-for="ProductID" class="form-control" />
- 
-            </div>
-        </form>
+
       <a class ="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Home Page</a> 
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

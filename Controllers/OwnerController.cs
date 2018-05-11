@@ -99,7 +99,7 @@ namespace WDT_Assignment_2.Controllers
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(OwnerProcessStockRequest));
 
-            //NEED TO UPDATE RELEVENT STORE STOCK AND SUBTRACT FROM OWNERS INV
+            //STILL NEED TO REMOVE STOCK FROM OWNER INVETORY
 
                 }
             }
@@ -108,6 +108,18 @@ namespace WDT_Assignment_2.Controllers
  
         }
        
+        public async Task<String> updateOwnerStock(int id,  int quantity)
+        {
+            foreach(var updateQuant in _context.OwnerInventory) {
+                if(id == updateQuant.ProductID) {
+                    updateQuant.StockLevel = (updateQuant.StockLevel - quantity);
+                }
+            }
+
+            await _context.SaveChangesAsync();
+            return " ";
+        }
+
         public async Task <String> updateStore(int id, StockRequest requestProcess) {
             
             int storeID = requestProcess.StoreID;
@@ -137,5 +149,6 @@ namespace WDT_Assignment_2.Controllers
 
             return View(product);
         }
+
     }
 }
