@@ -130,10 +130,12 @@ namespace WDT_Assignment_2.Controllers
 
         public IActionResult OwnerSetStock( int id)
         {   
-            
+            //Take id that is passed here and use it to display said item in the view. Hopefully
+           
+           
             var product = _context.OwnerInventory.SingleOrDefaultAsync(m => m.ProductID == id);
 
-            return View(id);
+            return View();
         }
     }
 }

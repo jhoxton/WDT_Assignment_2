@@ -6,50 +6,6 @@
     ViewBag.Title = "Product";
 }
 
-    <h3>This is the owner inventory page</h3>
-      <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    ProductID
-                </th>
-                <th>
-                    Product Name
-                </th>
-                <th>
-                   Current Stock Level
-                </th>
-                <th>
-                    Set Stock Level       
-                 </th>
-
-            </tr>
-        </thead>
-        <tbody>
-            @*
-              Foreach loop to dynamically generate products here  
-           *@
-                <tr>
-                    <td>
-
-                    </td>
-                    <td>
-                        SAMPLE NAME
-                    </td>
-                    <td>
-                        SAMPLE QUANTITY
-                    </td>
-                    <td>
-                        
-                        <a asp-area="" asp-controller="Owner" asp-action="OwnerSetStock">Set Item Stock Level</a> 
-                            @* Make this a button???*@
-                        
-                    </td>
-                </tr>
-
-        </tbody>
-    </table>
-
 
 
 
@@ -94,8 +50,9 @@
                 </td>
                      <td>
                         
-                         
-               <a asp-area="" asp-controller="Owner" asp-action="@item.ProductID">Set Item Stock Level</a>
+               @*<a asp-area="" asp-controller="Owner" asp-action="@item.ProductID">Set Item Stock Level</a>       *@   
+               <a asp-controller="Owner" asp-action="OwnerSetStock" asp-route-area= "">Set Item Stock Level</a>
+
 
                         
                     </td>

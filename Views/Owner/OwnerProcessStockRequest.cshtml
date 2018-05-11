@@ -6,55 +6,10 @@
     ViewData["Title"] = "StockRequests";
 }
 
-<body>
 
-            <h3>This is the owner inventory page</h3>
-      <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Stock Request ID
-                </th>
-                <th>
-                    Store Name
-                </th>
-                <th>
-                    Product Name
-                </th>
-                <th>
-                   Current Stock Level
-                </th>     
-                <th>
-                    Process Stock Request      
-                 </th>
 
-            </tr>
-        </thead>
-        <tbody>
-
-                <tr>
-                    <td>
-                        SAMPLE REQUEST ID
-                    </td>
-                    <td>
-                        SAMPLE STORE NAME
-                    </td>
-                    <td>
-                        SAMPLE PRODUCT NAME
-                    </td>
-                    <td>
-                        SAMPLE CURRENT STOCK
-                    </td>                    
-                    <td>
-                        
-                            <a asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Process Stock Request</a> 
-                            @* Make this a button???*@
-                        
-                    </td>
-                </tr>
-
-        </tbody>
-    </table>
+            <h3>Pending Stock Requests</h3>
+ 
     <table class="table">
     <thead>
         <tr>
@@ -98,4 +53,4 @@
 </table>
         
             <a class ="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Home Page</a> 
-</body>
+

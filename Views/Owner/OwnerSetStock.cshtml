@@ -1,6 +1,8 @@
-﻿@item.ProductID
+﻿@model IEnumerable<OwnerInventory>
+
 @*
 http://localhost:5000/Owner/OwnerSetStock
+
 *@
 
 
@@ -26,9 +28,10 @@ http://localhost:5000/Owner/OwnerSetStock
             @*
             dynamically generate selected item here  
            *@
+
                 <tr>
                     <td>
-                       @Html.DisplayFor(modelItem => item.ProductID)
+
                     </td>
                     <td>
                          <input type="number" name="quantity" min="1" max="100">      
