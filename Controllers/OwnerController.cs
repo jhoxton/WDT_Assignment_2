@@ -106,14 +106,14 @@ namespace WDT_Assignment_2.Controllers
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(OwnerProcessStockRequest));
 
-            //STILL NEED TO REMOVE STOCK FROM OWNER INVETORY
-
                 }
             }
 
             return View();
  
         }
+
+
        
 
 
@@ -145,6 +145,45 @@ namespace WDT_Assignment_2.Controllers
             return View(product);
         }
 
+        public async Task<IActionResult> UpdateOwnerStock(int id, int quantity)
+        {
+            //var requestProcess = await _context.StockRequests.SingleOrDefaultAsync(m => m.StockRequestID == id);
 
+            int levelToUpdate = quantity;
+            int prodToUpdate = id;
+            levelToUpdate = 100;
+            prodToUpdate = 1;
+
+            //Checking valid owner stock level
+            foreach (var ownerQuant in _context.OwnerInventory.ToList())
+            {
+                if (levelToUpdate > ownerQuant.StockLevel)
+                {
+                    //PRINT SOMETHING HERE
+                }
+                else
+                {
+
+                    //Updates the OwnerInvetory
+                    foreach (var test in _context.OwnerInventory)
+                    {
+                        if (test.ProductID == prodToUpdate)
+                        {
+                            test.StockLevel =  levelToUpdate;
+                        }
+
+                    }
+                    //Updates the store inventory
+
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(OwnerInventory));
+
+                }
+            }
+
+            return View();
+
+        }
     }
 }
