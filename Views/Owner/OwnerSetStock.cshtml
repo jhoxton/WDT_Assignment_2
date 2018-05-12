@@ -23,36 +23,44 @@ http://localhost:5000/Owner/OwnerSetStock
                 <th>
                     Quantity to restock
                 </th>
+                <th>Set Stock
+                </th>
 
 
             </tr>
         </thead>
        
-        <form  asp-action="UpdateOwnerStock" asp-controller="OwnerController" method="post">
+       @{
+
+        var id =  @Html.DisplayFor(model => model.ProductID);
+        var currentStock =  @Html.DisplayFor(model => model.StockLevel);
+
+    
+        }
+    
     <tbody>
                 <tr>
                     <td>   
-                    <div asp-for ="Product ID">
-                         @Html.DisplayFor(model => model.ProductID)
-                        </div>
+
+                       @id
+
                     <td>
-                          PRODUCT NAME HERE       
+                          PRODUCT NAME HERE  
                     </td>
                      <td>
-                         @Html.DisplayFor(model => model.StockLevel)
+                        @currentStock
                     </td>
                     <td>
                         <input asp-for ="Stock Level" type="number" name="Stock Level" placeholder="Enter Quantity" min="1" max="100">      
                     </td>
                     <td>
-                        <input type="submit"> 
-
+                     <a asp-action="UpdateOwnerStock" asp-route-id="@id">Set Stock</a>
                     </td>
 
                 </tr>
 
         </tbody>
-        </form>
+ 
     </table>
 
 

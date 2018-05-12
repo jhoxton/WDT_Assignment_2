@@ -147,13 +147,14 @@ namespace WDT_Assignment_2.Controllers
 
 
        
-        public async Task<IActionResult> UpdateOwnerStock(int id, int quantity)
+        public async Task<IActionResult> UpdateOwnerStock(int id)
         {
+            //TRY PASSING A SINGLE OWNER INVETORY OBJECT
             //var requestProcess = await _context.StockRequests.SingleOrDefaultAsync(m => m.StockRequestID == id);
 
-            int levelToUpdate = quantity;
+            //int levelToUpdate = quantity;
             int prodToUpdate = id;
-            //levelToUpdate = 100;
+            int levelToUpdate = 100;
             //prodToUpdate = 1;
 
             //Checking valid owner stock level
