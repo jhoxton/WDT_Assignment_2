@@ -106,16 +106,10 @@ namespace WDT_Assignment_2.Controllers
                     _context.StockRequests.Remove(requestProcess);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(OwnerProcessStockRequest));
-
                 }
             }
-
             return View();
- 
         }
-
-
-       
 
 
         public async Task <String> updateStore(int id, StockRequest requestProcess) {
@@ -143,6 +137,7 @@ namespace WDT_Assignment_2.Controllers
             //Take id that is passed here and use it to display said item in the view. Hopefully
             var product = await _context.OwnerInventory.SingleOrDefaultAsync(m => m.ProductID == id);
 
+           
             return View(product);
         }
 
@@ -151,9 +146,7 @@ namespace WDT_Assignment_2.Controllers
 
        //This logic works. Input doesn't
         public async Task<IActionResult> UpdateOwnerStock(int id, int quantity)
-        {
-  
-           
+        {           
             //Updating OwnerInventory here...
 
             int levelToUpdate = quantity;

@@ -6,13 +6,11 @@
     ViewBag.Title = "Product";
 }
 
-
-
-
 <h2>Owner Inventory</h2>
 
 <form method="get">
     <p>
+        @*TRY WITH THIS ONE???*@
         Product Name: <input name="productName" value="@ViewBag.ProductName" />
         <input type="submit" value="Filter" />
     </p>
@@ -55,12 +53,13 @@
                     @Html.DisplayFor(modelItem => item.StockLevel)
                 </td>
                 <td>
-                   <input asp-for ="@item.StockLevel" type="number" value="stockInput" name="Stock Level" placeholder="Enter Quantity" min="1" max="100"> 
-               
+                  
+                   @*TRY GODDAMN LAMBDA AHGAIN*@
+
                  </td>
                  <td>
                
-                    <a asp-action="UpdateOwnerStock" asp-route-id="@item.ProductID, @item.StockLevel">Set Stock</a> 
+                    <a asp-action="OwnerSetStock" asp-route-id="@item.ProductID">Set Stock</a> 
                       
                  </td>
             

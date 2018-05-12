@@ -1,13 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@model WDT_Assignment_2.Models.Store
+
+
 @*
 http://localhost:5000/Customer/CustomerDisplayInventory
 *@
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
     <div>
          <table class="table">
                 <thead>
@@ -48,7 +44,7 @@ http://localhost:5000/Customer/CustomerDisplayInventory
                                 @* Need to set max value as current stores stock level*@
                             </td>
                             <td>
-                             <input type="submit"> 
+                              <a asp-action="UpdateOwnerStock" asp-route-id="@item.ProductID">Set Stock</a> 
                             </td>
                         </tr>
 
@@ -58,5 +54,3 @@ http://localhost:5000/Customer/CustomerDisplayInventory
             <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerStoreSelect">Change Store</a>  
         </div>
         <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a> 
-</body>
-</html>

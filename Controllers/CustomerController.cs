@@ -15,6 +15,12 @@ namespace WDT_Assignment_2.Controllers
     [Authorize(Roles = Constants.CustomerRole)]
     public class CustomerController : Controller
     {
+        private readonly Context _context;
+
+        public CustomerController(Context context)
+        {
+            _context = context;
+        }
         // GET: /<controller>/
         public IActionResult CustomerIndex()
         {
@@ -32,8 +38,19 @@ namespace WDT_Assignment_2.Controllers
         {
             return View();
         }
-        public IActionResult CustomerDisplayInventory()
+        public IActionResult CustomerDisplayInventory(int? id)
         {
+            var store =  _context.Stores.SingleOrDefaultAsync(m => m.StoreID == id);
+
+            if (id == 1)
+            {
+                
+                    return View(store);
+            }
+            else if (id == 2)
+            {
+                return RedirectToAction(nameof(CustomerIndex));
+            }
             return View();
         }
         public IActionResult CustomerCheckOut()
@@ -43,6 +60,11 @@ namespace WDT_Assignment_2.Controllers
         public IActionResult CustomerConfirmPurchase()
         {
             return View();
+        }
+       
+        public IActionResult populateStore(Store passingStore)
+        {
+            return RedirectToAction(nameof(CustomerIndex));
         }
     }
 }
