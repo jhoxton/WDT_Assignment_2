@@ -90,10 +90,17 @@ namespace WDT_Assignment_2.Controllers
                     //USE ToList() here for the Store Inventory I guess
                 } else {
 
-
-
+                    //Updates the OwnerInvetory
+                    foreach(var test in _context.OwnerInventory){
+                        if(test.ProductID == requestProcess.ProductID) {
+                            test.StockLevel = (test.StockLevel - quantCrossCheck);
+                        }
+                        
+                    }
                     //Updates the store inventory
                     await updateStore(requestProcess.StoreID, requestProcess);
+
+
                     //Removes the stock request
                     _context.StockRequests.Remove(requestProcess);
                     await _context.SaveChangesAsync();
@@ -108,17 +115,7 @@ namespace WDT_Assignment_2.Controllers
  
         }
        
-        public async Task<String> updateOwnerStock(int id,  int quantity)
-        {
-            foreach(var updateQuant in _context.OwnerInventory) {
-                if(id == updateQuant.ProductID) {
-                    updateQuant.StockLevel = (updateQuant.StockLevel - quantity);
-                }
-            }
 
-            await _context.SaveChangesAsync();
-            return " ";
-        }
 
         public async Task <String> updateStore(int id, StockRequest requestProcess) {
             
@@ -136,19 +133,18 @@ namespace WDT_Assignment_2.Controllers
 
         public IActionResult OwnerIndex() 
         {
-            ViewData["Message"] = " ";
+           
             return View();
         }
 
         public async Task<IActionResult> OwnerSetStock(int? id)
         {  
             //Take id that is passed here and use it to display said item in the view. Hopefully
-           
-            //var movie = await _context.OwnerInventory.SingleOrDefaultAsync(m => m.ID == id);
             var product = await _context.OwnerInventory.SingleOrDefaultAsync(m => m.ProductID == id);
 
             return View(product);
         }
+
 
     }
 }
