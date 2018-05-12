@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WDT_Assignment_2.Models;
 using WDT_Assignment_2.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace WDT_Assignment_2.Controllers
 {
@@ -146,15 +147,18 @@ namespace WDT_Assignment_2.Controllers
         }
 
 
-       
-        public async Task<IActionResult> UpdateOwnerStock(int id)
-        {
-            //TRY PASSING A SINGLE OWNER INVETORY OBJECT
-            //var requestProcess = await _context.StockRequests.SingleOrDefaultAsync(m => m.StockRequestID == id);
+      
 
-            //int levelToUpdate = quantity;
+       //This logic works. Input doesn't
+        public async Task<IActionResult> UpdateOwnerStock(int id, int quantity)
+        {
+  
+           
+            //Updating OwnerInventory here...
+
+            int levelToUpdate = quantity;
             int prodToUpdate = id;
-            int levelToUpdate = 100;
+            //int levelToUpdate = 100;
             //prodToUpdate = 1;
 
             //Checking valid owner stock level
@@ -171,17 +175,13 @@ namespace WDT_Assignment_2.Controllers
                     {
                         if (test.ProductID == prodToUpdate)
                         {
-                            test.StockLevel =  levelToUpdate;
+                            test.StockLevel =  levelToUpdate;                           
                         }
                     }
-                    //Updates the store inventory
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(OwnerInventory));
-
                 }
             }
-
-            return View();
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(OwnerInventory));
 
         }
     }

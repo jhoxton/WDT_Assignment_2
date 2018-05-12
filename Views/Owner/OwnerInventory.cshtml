@@ -37,10 +37,16 @@
         </tr>
     </thead>
     <tbody>
+   
+        
         @foreach(var item in Model) {
+               
+                          
+        
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductID)
+                
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Product.Name)
@@ -48,15 +54,16 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.StockLevel)
                 </td>
-                     <td>
-                        
-               @*<a asp-area="" asp-controller="Owner" asp-action="@item.ProductID">Set Item Stock Level</a>          
-               <a asp-controller="Owner" asp-action="OwnerSetStock" asp-route-area= "">Set Item Stock Level</a>*@
-                 <a asp-action="OwnerSetStock" asp-route-id="@item.ProductID">Set Item Stock Level</a>
-
-
-                        
-                    </td>
+                <td>
+                   <input asp-for ="@item.StockLevel" type="number" value="stockInput" name="Stock Level" placeholder="Enter Quantity" min="1" max="100"> 
+               
+                 </td>
+                 <td>
+               
+                    <a asp-action="UpdateOwnerStock" asp-route-id="@item.ProductID, @item.StockLevel">Set Stock</a> 
+                      
+                 </td>
+            
             </tr>
         }
     </tbody>

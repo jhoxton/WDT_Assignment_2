@@ -32,4 +32,7 @@
 
         
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\Owner\UpdateOwnerStock.cshtml" />
+  </ItemGroup>
 </Project>
