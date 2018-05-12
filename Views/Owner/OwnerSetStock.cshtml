@@ -27,11 +27,14 @@ http://localhost:5000/Owner/OwnerSetStock
 
             </tr>
         </thead>
-        <form asp-action="UpdateOwnerStock" >
+       
+        <form  asp-action="UpdateOwnerStock" asp-controller="OwnerController" method="post">
     <tbody>
                 <tr>
-                    <td>                 
+                    <td>   
+                    <div asp-for ="Product ID">
                          @Html.DisplayFor(model => model.ProductID)
+                        </div>
                     <td>
                           PRODUCT NAME HERE       
                     </td>
@@ -39,8 +42,7 @@ http://localhost:5000/Owner/OwnerSetStock
                          @Html.DisplayFor(model => model.StockLevel)
                     </td>
                     <td>
-                        <input 
-                               type="number" name="updateQuantity" min="1" max="100">      
+                        <input asp-for ="Stock Level" type="number" name="Stock Level" placeholder="Enter Quantity" min="1" max="100">      
                     </td>
                     <td>
                         <input type="submit"> 

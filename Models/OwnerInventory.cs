@@ -8,6 +8,7 @@ namespace WDT_Assignment_2.Models
     {
         [Key, ForeignKey("Product"), Display(Name = "Product ID")]
         public int ProductID { get; set; }
+
         public Product Product { get; set; }
 
         [Display(Name = "Stock Level")]

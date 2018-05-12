@@ -87,7 +87,7 @@ namespace WDT_Assignment_2.Controllers
                 if(quantCrossCheck > ownerQuant.StockLevel) {
                     
                    //PRINT SOMETHING HERE
-                    //USE ToList() here for the Store Inventory I guess
+
                 } else {
 
                     //Updates the OwnerInvetory
@@ -145,14 +145,16 @@ namespace WDT_Assignment_2.Controllers
             return View(product);
         }
 
+
+       
         public async Task<IActionResult> UpdateOwnerStock(int id, int quantity)
         {
             //var requestProcess = await _context.StockRequests.SingleOrDefaultAsync(m => m.StockRequestID == id);
 
             int levelToUpdate = quantity;
             int prodToUpdate = id;
-            levelToUpdate = 100;
-            prodToUpdate = 1;
+            //levelToUpdate = 100;
+            //prodToUpdate = 1;
 
             //Checking valid owner stock level
             foreach (var ownerQuant in _context.OwnerInventory.ToList())
@@ -163,7 +165,6 @@ namespace WDT_Assignment_2.Controllers
                 }
                 else
                 {
-
                     //Updates the OwnerInvetory
                     foreach (var test in _context.OwnerInventory)
                     {
@@ -171,12 +172,9 @@ namespace WDT_Assignment_2.Controllers
                         {
                             test.StockLevel =  levelToUpdate;
                         }
-
                     }
                     //Updates the store inventory
-
                     await _context.SaveChangesAsync();
-
                     return RedirectToAction(nameof(OwnerInventory));
 
                 }
