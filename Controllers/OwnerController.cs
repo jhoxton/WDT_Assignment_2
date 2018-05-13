@@ -139,15 +139,24 @@ namespace WDT_Assignment_2.Controllers
                 return NotFound();
             }
 
-            var course = await _context.OwnerInventory
+            var product = await _context.OwnerInventory
                 .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.ProductID == id);
-            if (course == null)
+            if (product == null)
             {
                 return NotFound();
             }
-
-            return View(course);
+            //Finds and sets the name of the selected product
+            /////
+            foreach (Product productCheck in _context.Products)
+            {
+                if (product.ProductID == productCheck.ProductID)
+                {
+                    product.Product = productCheck;
+                }
+            }
+            //////
+            return View(product);
         }
         [HttpPost, ActionName("OwnerSetStock")]
         [ValidateAntiForgeryToken]
@@ -158,12 +167,10 @@ namespace WDT_Assignment_2.Controllers
                 return NotFound();
             }
 
-            var courseToUpdate = await _context.OwnerInventory
+            var productToUpdate = await _context.OwnerInventory
                .SingleOrDefaultAsync(c => c.ProductID == id);
 
-            if (await TryUpdateModelAsync<OwnerInventory>(courseToUpdate,
-                "",
-              c => c.ProductID,  c => c.StockLevel))
+            if (await TryUpdateModelAsync<OwnerInventory>(productToUpdate, "", c => c.ProductID,  c => c.StockLevel, c => c.Product.Name))
             {
                 try
                 {
@@ -179,12 +186,10 @@ namespace WDT_Assignment_2.Controllers
                 return RedirectToAction(nameof(OwnerIndex));
             }
             //PopulateDepartmentsDropDownList(courseToUpdate.DepartmentID);
-            return View(courseToUpdate);
+            return View(productToUpdate);
         }
 
       
-
-       //This logic works. Input doesn't
         public async Task<IActionResult> UpdateOwnerStock(int id, int quantity)
         {           
             //Updating OwnerInventory here...

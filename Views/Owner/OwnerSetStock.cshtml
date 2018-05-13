@@ -1,5 +1,6 @@
 ﻿
 @model WDT_Assignment_2.Models.OwnerInventory
+
 @{
     ViewData["Title"] = "OwnerSetStock";
 }
@@ -15,10 +16,14 @@ http://localhost:5000/Owner/OwnerSetStock
                 <th>
                     Product ID
                 </th>
-
+                <th>
+                    Product
+                </th>
+                    
                 <th>
                     Current Stock Level
                 </th>
+
                 <th>
                     Quantity to restock
                 </th>
@@ -35,9 +40,17 @@ http://localhost:5000/Owner/OwnerSetStock
             <tr>
                 <td>   
                   <input type="hidden" asp-for="ProductID" />
-
+                    
+                  <div>
+                  </div>
                 
                 <div>@Html.DisplayFor(model => model.ProductID)</div>
+                    </td>
+
+                <td>
+
+                    <div>@Html.DisplayFor(model => model.Product.Name)</div>
+                </td>
                 <td>
                      
                 <div>@Html.DisplayFor(model => model.StockLevel)</div> 
