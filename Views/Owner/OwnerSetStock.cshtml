@@ -1,8 +1,11 @@
 ﻿
 @model WDT_Assignment_2.Models.OwnerInventory
+@{
+    ViewData["Title"] = "OwnerSetStock";
+}
 @*
 http://localhost:5000/Owner/OwnerSetStock
-*@
+
       
       <h3>Set Item Stock Level</h3>
       <table class="table">
@@ -37,7 +40,7 @@ http://localhost:5000/Owner/OwnerSetStock
 
                 </td>
                 <td>
-                   @* <input asp-for ="StockLevel" type="number" name="Stock Level" placeholder="Enter Quantity" min="1" max="100">  *@    
+                   @* <input asp-for ="StockLevel" type="number" name="Stock Level" placeholder="Enter Quantity" min="1" max="100">     
                 </td>
                 <td>
                  <a asp-action="UpdateOwnerStock" asp-route-id="">Set Stock</a>
@@ -48,8 +51,33 @@ http://localhost:5000/Owner/OwnerSetStock
         </tbody>
  
     </table>
+    *@
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="OwnerSetStock">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductID" />
+            <div class="form-group">
+                <label asp-for="ProductID" class="control-label"></label>
+                <div>@Html.DisplayFor(model => model.ProductID)</div>
+            </div>
+          @*  <div class="form-group">
+                <label asp-for="StockLevel" class="control-label"></label>
+                <div>@Html.DisplayFor(model => model.StockLevel)</div>
+            </div>   *@         
 
+            <div class="form-group">
+                <label asp-for="StockLevel" class="control-label"></label>
+                <input asp-for="StockLevel" class="form-control" />
+                <span asp-validation-for="StockLevel" class="text-danger"></span>
+            </div>
 
+            <div class="form-group">
+                <input type="submit" value="FUCK" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
 
       <a class ="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Home Page</a> 
 

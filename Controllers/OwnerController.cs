@@ -133,14 +133,54 @@ namespace WDT_Assignment_2.Controllers
         }
 
         public async Task<IActionResult> OwnerSetStock(int? id)
-        {  
-            //Take id that is passed here and use it to display said item in the view. Hopefully
-            var product = await _context.OwnerInventory.SingleOrDefaultAsync(m => m.ProductID == id);
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-           
-            return View(product);
+            var course = await _context.OwnerInventory
+                .AsNoTracking()
+                .SingleOrDefaultAsync(m => m.ProductID == id);
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            return View(course);
         }
+        [HttpPost, ActionName("OwnerSetStock")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> OwnerSetStockPost(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var courseToUpdate = await _context.OwnerInventory
+               .SingleOrDefaultAsync(c => c.ProductID == id);
+
+            if (await TryUpdateModelAsync<OwnerInventory>(courseToUpdate,
+                "",
+              c => c.ProductID,  c => c.StockLevel))
+            {
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException /* ex */)
+                {
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "Try again, and if the problem persists, " +
+                        "see your system administrator.");
+                }
+                return RedirectToAction(nameof(OwnerIndex));
+            }
+            //PopulateDepartmentsDropDownList(courseToUpdate.DepartmentID);
+            return View(courseToUpdate);
+        }
 
       
 
