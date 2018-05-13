@@ -47,11 +47,12 @@ http://localhost:5000/Owner/OwnerSetStock
                 
                 <div>@Html.DisplayFor(model => model.ProductID)</div>
                     </td>
-
+                    @foreach(var item in Model) {
                 <td>
 
-                    <div>@Html.DisplayFor(model => model.Product.Name)</div>
+                    <div>@Html.DisplayFor(model => model.StoreInventory.Name)</div>
                 </td>
+                }
                 <td>
                      
                 <div>@Html.DisplayFor(model => model.StockLevel)</div> 

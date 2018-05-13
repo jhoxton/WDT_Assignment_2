@@ -1,52 +1,37 @@
-﻿
-
-
-@model IEnumerable<WDT_Assignment_2.Models.OwnerInventory>
-
-
-@{
-    ViewBag.Title = "Product";
-}
-
-<h2>Owner Inventory</h2>
-
-<form method="get">
-    <p>
-        @*TRY WITH THIS ONE???*@
-        Product Name: <input name="productName" value="@ViewBag.ProductName" />
-        <input type="submit" value="Filter" />
-    </p>
-</form>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StockLevel)
-            </th>
-                                    <th>
-                    Set Stock Level       
-                 </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-   
-        
-        @foreach(var item in Model) {
-               
-                          
-        
+﻿ @model IEnumerable
+<WDT_Assignment_2.Models.OwnerInventory>
+    @{ ViewBag.Title = "Product"; }
+    <h2>Owner Inventory</h2>
+    <form method="get">
+        <p>
+            Product Name:
+            <input name="productName" value="@ViewBag.ProductName" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StockLevel)
+                </th>
+                <th>
+                    Set Stock Level
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model) {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.ProductID)
-                
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Product.Name)
@@ -55,23 +40,14 @@
                     @Html.DisplayFor(modelItem => item.StockLevel)
                 </td>
                 <td>
-                  
-                   @*TRY GODDAMN LAMBDA AHGAIN*@
 
-                 </td>
-                 <td>
-               
-                    <a asp-action="OwnerSetStock" asp-route-id="@item.ProductID">Set Stock</a> 
-                      
-                 </td>
-            
+                </td>
+                <td>
+                    <a asp-action="OwnerSetStock" asp-route-id="@item.ProductID">Set Stock</a>
+                </td>
             </tr>
-        }
-    </tbody>
-</table>
-
-      <div>   
-    <a class ="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Home Page</a> 
-        
-       @* <a class ="linkButton" asp-area="" asp-controller="Home" asp-action="Login">Logout</a> *@
-        
+            }
+        </tbody>
+    </table>
+    <div>
+        <a class="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Home Page</a> @* <a class="linkButton" asp-area="" asp-controller="Home" asp-action="Login">Logout</a> *@

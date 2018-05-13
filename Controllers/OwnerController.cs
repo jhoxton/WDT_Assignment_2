@@ -166,7 +166,7 @@ namespace WDT_Assignment_2.Controllers
             var productToUpdate = await _context.OwnerInventory
                .SingleOrDefaultAsync(c => c.ProductID == id);
 
-            if (await TryUpdateModelAsync<OwnerInventory>(productToUpdate, "", c => c.ProductID,  c => c.StockLevel, c => c.Product.Name))
+            if (await TryUpdateModelAsync<OwnerInventory>(productToUpdate, "", c => c.ProductID,  c => c.StockLevel))
             {
                 try
                 {

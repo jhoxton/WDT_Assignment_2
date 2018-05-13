@@ -1,98 +1,85 @@
-﻿@model WDT_Assignment_2.Models.Store
-@*
-http://localhost:5000/Customer/CustomerDisplayInventory
+﻿@model WDT_Assignment_2.Models.Store 
+@* http://localhost:5000/Customer/CustomerDisplayInventory
+If anything isn't happening the way it should, remember I removed 
+//builder.Entity<StoreInventory>().ToTable("StoreInventory"); from Context
 *@
-
-
- 
-    
-         <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            ProductID 
-                        </th>
-                        <th>
-                            Product 
-                        </th>
-                        <th>
-                           Current Stock Level
-                        </th>
-                        <th>
-                            Select Quantity   
-                         </th>      
-                            <th>
-                               Add to Cart 
-                            </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @*
-                      Foreach loop to dynamically generate products here  
-                   *@
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(model => model.Name)
-                            </td>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                SAMPLE CURRENT STOCK LEVEL
-                            </td>
-                            <td>
-                                <input type="number" name="quantity" min="1" max="100" value="Add">    
-                                @* Need to set max value as current stores stock level*@
-                            </td>
-                            <td>
-
-                            </td>
-                        </tr>
-
-                </tbody>
-            </table>
-
-        <table class="table">
+<h2> @Html.DisplayFor(model => model.Name)</h2>
+<table class="table">
     <thead>
         <tr>
             <th>
-          
-                
+                ProductID
             </th>
             <th>
-              
+                Product
             </th>
             <th>
-          
+                Current Stock Level
             </th>
-
-            <th></th>
+            <th>
+                Select Quantity
+            </th>
+            <th>
+                Add to Cart
+            </th>
         </tr>
     </thead>
-    <tbody>
-  
+        <tbody>
+         
             <tr>
                 <td>
+                    @Html.DisplayFor(model => model.StoreInventory)
+                </td>
+            
+               @foreach(var item in Model.StoreInventory) {
+            
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductID)
+                </td>
+            }
+                <td>
+
                 </td>
                 <td>
                 </td>
                 <td>
                     
                 </td>
-
-                <td>
-                @*   
-                <a asp-action="Edit" asp-route-id="@item.CourseID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.CourseID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.CourseID">Delete</a>
-                *@
-                </td>
             </tr>
-        
 
+        </tbody>
+</table>
+                <input type="number" name="quantity" min="1" max="100" value="Add"> @* Need to set max value as current stores stock level*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                
+            </td>
+            <td>
+                
+            </td>
+            <td>
+                
+            </td>
+            <td>
+
+            </td>
+        </tr>
     </tbody>
 </table>
-            <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerViewCart">View Cart</a> 
-            <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerStoreSelect">Change Store</a>  
-
-        <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a> 
+<a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerViewCart">View Cart</a>
+<a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerStoreSelect">Change Store</a>
+<a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a>

@@ -51,6 +51,8 @@ namespace WDT_Assignment_2.Controllers
                 }
              //Something is getting passed to the page, just need to validate the data
             }
+            //Instead of this, you will need to find the store inventory and pass it to another method
+            // which returns the view. The view will then have to take the Store Inventory as an argument
             return View(passStore);
         }
 
