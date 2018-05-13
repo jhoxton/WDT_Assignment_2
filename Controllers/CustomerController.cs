@@ -39,10 +39,9 @@ namespace WDT_Assignment_2.Controllers
             return View();
         }
 
-        public IActionResult CustomerDisplayInventory() {
+        public IActionResult CustomerDisplayInventory(int id) {
 
-            int IDcheck = 1;
-
+            int IDcheck = id;
             Store passStore = new Store();
 
             foreach(Store test in _context.Stores) {
