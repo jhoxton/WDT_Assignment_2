@@ -5,7 +5,7 @@
 }
 @*
 http://localhost:5000/Owner/OwnerSetStock
-
+*@
       
       <h3>Set Item Stock Level</h3>
       <table class="table">
@@ -14,9 +14,7 @@ http://localhost:5000/Owner/OwnerSetStock
                 <th>
                     Product ID
                 </th>
-            <th>
-                    Product Name
-                </th>
+
                 <th>
                     Current Stock Level
                 </th>
@@ -29,55 +27,49 @@ http://localhost:5000/Owner/OwnerSetStock
 
             </tr>
         </thead>
-    <tbody>
+    <tbody> 
+
             <tr>
                 <td>   
 
                 <td>
-                      PRODUCT NAME HERE  
+                     
                 </td>
                  <td>
 
                 </td>
                 <td>
-                   @* <input asp-for ="StockLevel" type="number" name="Stock Level" placeholder="Enter Quantity" min="1" max="100">     
+                    
                 </td>
-                <td>
-                 <a asp-action="UpdateOwnerStock" asp-route-id="">Set Stock</a>
-                </td>
+
 
             </tr>
 
         </tbody>
  
     </table>
-    *@
-<div class="row">
-    <div class="col-md-4">
+
+
         <form asp-action="OwnerSetStock">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly"></div>
+
             <input type="hidden" asp-for="ProductID" />
-            <div class="form-group">
+
                 <label asp-for="ProductID" class="control-label"></label>
                 <div>@Html.DisplayFor(model => model.ProductID)</div>
-            </div>
-          @*  <div class="form-group">
+           
                 <label asp-for="StockLevel" class="control-label"></label>
                 <div>@Html.DisplayFor(model => model.StockLevel)</div>
-            </div>   *@         
 
-            <div class="form-group">
-                <label asp-for="StockLevel" class="control-label"></label>
                 <input asp-for="StockLevel" class="form-control" />
-                <span asp-validation-for="StockLevel" class="text-danger"></span>
-            </div>
+                <div asp-validation-for="StockLevel" ></div>
+           
 
             <div class="form-group">
-                <input type="submit" value="FUCK" class="btn btn-default" />
+                <input type="submit" value="Update" class="linkButton" />
             </div>
         </form>
-    </div>
-</div>
+
 
       <a class ="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Home Page</a> 
 
