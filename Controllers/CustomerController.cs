@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WDT_Assignment_2.Models;
 using WDT_Assignment_2.Data;
 using Microsoft.AspNetCore.Authorization;
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 
 namespace WDT_Assignment_2.Controllers
 {
@@ -38,13 +38,24 @@ namespace WDT_Assignment_2.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> CustomerDisplayInventory(int? id)
-        {
-            var theStore = _context.StoreInventory
-             .Include(c => c.Store)
-            .AsNoTracking();
-            return View(await theStore.ToListAsync());
+
+        public IActionResult CustomerDisplayInventory() {
+
+            int IDcheck = 1;
+
+            Store passStore = new Store();
+
+            foreach(Store test in _context.Stores) {
+                if(test.StoreID == IDcheck) {
+                    passStore = test;
+
+                }
+             //Something is getting passed to the page, just need to validate the data
+            }
+            return View(passStore);
         }
+
+
 
         public IActionResult CustomerCheckOut()
         {

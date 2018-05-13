@@ -111,7 +111,6 @@ namespace WDT_Assignment_2.Controllers
             return View();
         }
 
-
         public async Task <String> updateStore(int id, StockRequest requestProcess) {
             
             int storeID = requestProcess.StoreID;
@@ -123,12 +122,9 @@ namespace WDT_Assignment_2.Controllers
             await _context.SaveChangesAsync();
             return " ";
         }
-    
-       
 
         public IActionResult OwnerIndex() 
-        {
-           
+        {          
             return View();
         }
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WDT_Assignment_2.Models.StoreInventory>
+﻿@model WDT_Assignment_2.Models.Store
 @*
 http://localhost:5000/Customer/CustomerDisplayInventory
 *@
@@ -32,7 +32,7 @@ http://localhost:5000/Customer/CustomerDisplayInventory
                    *@
                         <tr>
                             <td>
-                                
+                                @Html.DisplayFor(model => model.Name)
                             </td>
                             <td>
                                 
@@ -56,30 +56,28 @@ http://localhost:5000/Customer/CustomerDisplayInventory
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.StoreID)
+          
+                
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductID)
+              
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StockLevel)
+          
             </th>
 
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
+  
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.StoreID)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductID)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.StockLevel)
+                    
                 </td>
 
                 <td>
@@ -90,7 +88,7 @@ http://localhost:5000/Customer/CustomerDisplayInventory
                 *@
                 </td>
             </tr>
-        }
+        
 
     </tbody>
 </table>
