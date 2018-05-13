@@ -1,11 +1,7 @@
 ﻿
 @model WDT_Assignment_2.Models.OwnerInventory
-
-
-
 @*
 http://localhost:5000/Owner/OwnerSetStock
-
 *@
       
       <h3>Set Item Stock Level</h3>
@@ -30,22 +26,15 @@ http://localhost:5000/Owner/OwnerSetStock
 
             </tr>
         </thead>
-       
-       @{
-        var id =  @Html.DisplayFor(model => model.ProductID);
-        var currentStock =  @Html.DisplayFor(model => model.StockLevel);
-
-        }
-    
     <tbody>
             <tr>
                 <td>   
-                   @id
+
                 <td>
                       PRODUCT NAME HERE  
                 </td>
                  <td>
-                    @currentStock
+
                 </td>
                 <td>
                    @* <input asp-for ="StockLevel" type="number" name="Stock Level" placeholder="Enter Quantity" min="1" max="100">  *@    

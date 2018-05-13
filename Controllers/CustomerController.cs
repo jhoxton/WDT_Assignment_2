@@ -38,21 +38,14 @@ namespace WDT_Assignment_2.Controllers
         {
             return View();
         }
-        public IActionResult CustomerDisplayInventory(int? id)
+        public async Task<IActionResult> CustomerDisplayInventory(int? id)
         {
-            var store =  _context.Stores.SingleOrDefaultAsync(m => m.StoreID == id);
-
-            if (id == 1)
-            {
-                
-                    return View(store);
-            }
-            else if (id == 2)
-            {
-                return RedirectToAction(nameof(CustomerIndex));
-            }
-            return View();
+            var theStore = _context.StoreInventory
+             .Include(c => c.Store)
+            .AsNoTracking();
+            return View(await theStore.ToListAsync());
         }
+
         public IActionResult CustomerCheckOut()
         {
             return View();
@@ -62,9 +55,9 @@ namespace WDT_Assignment_2.Controllers
             return View();
         }
        
-        public IActionResult populateStore(Store passingStore)
-        {
-            return RedirectToAction(nameof(CustomerIndex));
-        }
+        //public IActionResult populateStore(Store passingStore)
+        //{
+        //    return RedirectToAction(nameof(CustomerIndex));
+        //}
     }
 }
