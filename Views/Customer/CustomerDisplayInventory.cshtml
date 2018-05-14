@@ -4,14 +4,13 @@ If anything isn't happening the way it should, remember I removed
 //builder.Entity<StoreInventory>().ToTable("StoreInventory"); from Context
 *@
 <h2> @Html.DisplayFor(model => model.Name)</h2>
+    
 <table class="table">
     <thead>
         <tr>
+
             <th>
-                ProductID
-            </th>
-            <th>
-                Product
+                Product ID
             </th>
             <th>
                 Current Stock Level
@@ -25,28 +24,29 @@ If anything isn't happening the way it should, remember I removed
         </tr>
     </thead>
         <tbody>
-         
+        @* COPY THE FORM AND POST FROM OWNER CONTROL*@
+          @foreach(var item in Model.StoreInventory) {
             <tr>
                 <td>
-                    @Html.DisplayFor(model => model.StoreInventory)
-                </td>
-            
-               @foreach(var item in Model.StoreInventory) {
-            
-                <td>
+                 
                     @Html.DisplayFor(modelItem => item.ProductID)
-                </td>
-            }
-                <td>
-
+                 
+                
                 </td>
                 <td>
+                   @Html.DisplayFor(modelItem => item.StockLevel)
+                </td>                    
+                <td>
+                 @Html.DisplayFor(modelItem => item.Product.ProductID)
+                </td>
+                <td>
+                
                 </td>
                 <td>
                     
                 </td>
             </tr>
-
+            }
         </tbody>
 </table>
                 <input type="number" name="quantity" min="1" max="100" value="Add"> @* Need to set max value as current stores stock level*@

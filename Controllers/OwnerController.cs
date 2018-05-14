@@ -53,16 +53,19 @@ namespace WDT_Assignment_2.Controllers
             //Creates a local var of StockRequests from _context
             var StockRequests = _context.StockRequests;
 
-            foreach(var getStoreName in StockRequests) {  
-                
-                foreach(Store storeCheck in _context.Stores) {
-                    if(getStoreName.StoreID == storeCheck.StoreID){
+            foreach (var getStoreName in StockRequests)
+            {
+
+                foreach (Store storeCheck in _context.Stores)
+                {
+                    if (getStoreName.StoreID == storeCheck.StoreID)
+                    {
                         getStoreName.Store = storeCheck;
                     }
                 }
             }
             foreach (var getStoreName in StockRequests)
-            {  
+            {
 
                 foreach (Product productCheck in _context.Products)
                 {
@@ -84,19 +87,25 @@ namespace WDT_Assignment_2.Controllers
             int quantCrossCheck = requestProcess.Quantity;
 
             //Checking valid owner stock level
-            foreach(var ownerQuant in _context.OwnerInventory.ToList()) {
-                if(quantCrossCheck > ownerQuant.StockLevel) {
-                    
-                   //PRINT SOMETHING HERE
+            foreach (var ownerQuant in _context.OwnerInventory.ToList())
+            {
+                if (quantCrossCheck > ownerQuant.StockLevel)
+                {
 
-                } else {
+                    //PRINT SOMETHING HERE
+
+                }
+                else
+                {
 
                     //Updates the OwnerInvetory
-                    foreach(var test in _context.OwnerInventory){
-                        if(test.ProductID == requestProcess.ProductID) {
+                    foreach (var test in _context.OwnerInventory)
+                    {
+                        if (test.ProductID == requestProcess.ProductID)
+                        {
                             test.StockLevel = (test.StockLevel - quantCrossCheck);
                         }
-                        
+
                     }
                     //Updates the store inventory
                     await updateStore(requestProcess.StoreID, requestProcess);
@@ -111,8 +120,9 @@ namespace WDT_Assignment_2.Controllers
             return View();
         }
 
-        public async Task <String> updateStore(int id, StockRequest requestProcess) {
-            
+        public async Task<String> updateStore(int id, StockRequest requestProcess)
+        {
+
             int storeID = requestProcess.StoreID;
 
             var storeInventory = await _context.StoreInventory.SingleAsync(x => x.StoreID == storeID && x.ProductID == id);
@@ -123,8 +133,8 @@ namespace WDT_Assignment_2.Controllers
             return " ";
         }
 
-        public IActionResult OwnerIndex() 
-        {          
+        public IActionResult OwnerIndex()
+        {
             return View();
         }
 
@@ -164,15 +174,15 @@ namespace WDT_Assignment_2.Controllers
             }
 
             var productToUpdate = await _context.OwnerInventory
-               .SingleOrDefaultAsync(c => c.ProductID == id);
+                .SingleOrDefaultAsync(c => c.ProductID == id);
 
-            if (await TryUpdateModelAsync<OwnerInventory>(productToUpdate, "", c => c.ProductID,  c => c.StockLevel))
+            if (await TryUpdateModelAsync<OwnerInventory>(productToUpdate, "", c => c.ProductID, c => c.StockLevel))
             {
                 try
                 {
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateException /* ex */)
+                catch (DbUpdateException /* ex */ )
                 {
                     //Log the error (uncomment ex variable name and write a log.)
                     ModelState.AddModelError("", "Unable to save changes. " +
@@ -185,9 +195,9 @@ namespace WDT_Assignment_2.Controllers
             return View(productToUpdate);
         }
 
-      
+
         public async Task<IActionResult> UpdateOwnerStock(int id, int quantity)
-        {           
+        {
             //Updating OwnerInventory here...
 
             int levelToUpdate = quantity;
@@ -209,7 +219,7 @@ namespace WDT_Assignment_2.Controllers
                     {
                         if (test.ProductID == prodToUpdate)
                         {
-                            test.StockLevel =  levelToUpdate;                           
+                            test.StockLevel = levelToUpdate;
                         }
                     }
                 }
