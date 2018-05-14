@@ -1,7 +1,7 @@
 ﻿ @model IEnumerable<WDT_Assignment_2.Models.StoreInventory>
 
     @{ ViewBag.Title = "Product"; }
-    <h2>Store Inventory</h2>
+    <h2> @Html.DisplayFor(model => model.Store.Name)</h2>
     <form method="get">
         <p>
             Product Name:
@@ -14,6 +14,7 @@
         <thead>
             <tr>
                 <th>
+                  
                     @Html.DisplayNameFor(model => model.ProductID)
                 </th>
                 <th>
@@ -32,6 +33,7 @@
             @foreach(var item in Model) {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Store.Name)
                     @Html.DisplayFor(modelItem => item.ProductID)
                 </td>
                 <td>

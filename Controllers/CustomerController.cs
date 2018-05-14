@@ -15,11 +15,8 @@ namespace WDT_Assignment_2.Controllers
     [Authorize(Roles = Constants.CustomerRole)]
     public class CustomerController : Controller
     {
-        public static Cart cart = new Cart();
-        public CartItem test = new CartItem();
-
-
-
+                    public static Cart cart = new Cart();
+                    public CartItem test = new CartItem();
 
         private readonly Context _context;
 
@@ -56,32 +53,33 @@ namespace WDT_Assignment_2.Controllers
             return View();
         }
 
-        public async Task<IActionResult> CustomerDisplayInventory(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> CustomerDisplayInventory(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var passStore = await _context.Stores
+        //    var passStore = await _context.Stores
 
-                .Include(c => c.StoreInventory)
+        //        .Include(c => c.StoreInventory)
 
 
-                .AsNoTracking()
-                .SingleOrDefaultAsync(m => m.StoreID == id);
+        //        .AsNoTracking()
+        //        .SingleOrDefaultAsync(m => m.StoreID == id);
 
-            if (passStore == null)
-            {
-                return NotFound();
-            }
+        //    if (passStore == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(passStore);
-        }
+        //    return View(passStore);
+        //}
         //HOW DO I COMBINE THESE TWO METHODS????
         public async Task<IActionResult> CustomerDisplayInventory(string productName, int id)
         {
             var query = _context.StoreInventory.Include(x => x.Product).Select(x => x);
+                               
             if (!string.IsNullOrWhiteSpace(productName))
             {
                 query = query.Where(x => x.Product.Name.Contains(productName));
