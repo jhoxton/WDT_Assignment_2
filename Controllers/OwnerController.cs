@@ -164,7 +164,8 @@ namespace WDT_Assignment_2.Controllers
             //////
             return View(product);
         }
-        [HttpPost, ActionName("OwnerSetStock")]
+        [HttpPost, ActionName("OwnerSetStock")] 
+        //This is the method the following will run after
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> OwnerSetStockPost(int? id)
         {

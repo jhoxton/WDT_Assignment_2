@@ -1,17 +1,9 @@
-﻿
-@model WDT_Assignment_2.Models.OwnerInventory
-
-@{
-    ViewData["Title"] = "OwnerSetStock";
-}
-@*
-http://localhost:5000/Owner/OwnerSetStock
-*@
-      
-      <h3>Set Item Stock Level</h3>
-       <form asp-action="OwnerSetStock">
+﻿ @model WDT_Assignment_2.Models.OwnerInventory 
+@{ ViewData["Title"] = "OwnerSetStock"; } @* http://localhost:5000/Owner/OwnerSetStock *@
+<h3>Set Item Stock Level</h3>
+<form asp-action="OwnerSetStock">
     @* THIS METHOD ERE CALLS THE POST ONE*@
-      <table class="table">
+    <table class="table">
         <thead>
             <tr>
                 <th>
@@ -20,104 +12,59 @@ http://localhost:5000/Owner/OwnerSetStock
                 <th>
                     Product
                 </th>
-                    
                 <th>
                     Current Stock Level
                 </th>
-
                 <th>
                     Quantity to restock
                 </th>
                 <th>Set Stock
                 </th>
-
-
             </tr>
         </thead>
-    <tbody> 
-   
+        <tbody>
             <div asp-validation-summary="ModelOnly"></div>
-
             <tr>
-                <td>   
-                  <input type="hidden" asp-for="ProductID" />
-                    
-                  <div>
-                  </div>
-                
-                <div>@Html.DisplayFor(model => model.ProductID)</div>
-                    </td>
-                    @foreach(var item in Model) {
                 <td>
-
+                    <input type="hidden" asp-for="ProductID" />
+                    <div>
+                    </div>
+                    <div>@Html.DisplayFor(model => model.ProductID)</div>
+                </td>
+                @foreach(var item in Model) {
+                <td>
                     <div>@Html.DisplayFor(model => model.StoreInventory.Name)</div>
                 </td>
                 }
                 <td>
-                     
-                <div>@Html.DisplayFor(model => model.StockLevel)</div> 
+                    <div>@Html.DisplayFor(model => model.StockLevel)</div>
                 </td>
-                 <td>
-                  <input asp-for="StockLevel" class="form-control" />
-                <div asp-validation-for="StockLevel" ></div>
+                <td>
+                    <input asp-for="StockLevel" class="form-control" />
+                    <div asp-validation-for="StockLevel"></div>
                 </td>
                 <td>
                     <div class="form-group">
-                <input type="submit" value="Update" class="linkButton" />
-            </div>
+                        <input type="submit" value="Update" class="linkButton" />
+                    </div>
                 </td>
-
-
             </tr>
-
         </tbody>
- 
     </table>
-    </form>
-
-    @* COPY THIS IF NEEDED AGAIN
-
-@model WDT_Assignment_2.Models.OwnerInventory
-@{
-    ViewData["Title"] = "OwnerSetStock";
-}
-
-        <form asp-action="OwnerSetStock">
-            <div asp-validation-summary="ModelOnly"></div>
-
-            <input type="hidden" asp-for="ProductID" />
-
-                <label asp-for="ProductID" class="control-label"></label>
-                <div>@Html.DisplayFor(model => model.ProductID)</div>
-           
-                <label asp-for="StockLevel" class="control-label"></label>
-                <div>@Html.DisplayFor(model => model.StockLevel)</div>
-
-                <input asp-for="StockLevel" class="form-control" />
-                <div asp-validation-for="StockLevel" ></div>
-           
-
-            <div class="form-group">
-                <input type="submit" value="Update" class="linkButton" />
-            </div>
-        </form>
-
-
-      <a class ="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Home Page</a> 
-
-*@
-       
-
-          
-           
-               
-
-
-           
-
-            
-        
-
-
-      <a class ="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Home Page</a> 
-
+</form>
+@* COPY THIS IF NEEDED AGAIN @model WDT_Assignment_2.Models.OwnerInventory @{ ViewData["Title"] = "OwnerSetStock"; }
+<form asp-action="OwnerSetStock">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input type="hidden" asp-for="ProductID" />
+    <label asp-for="ProductID" class="control-label"></label>
+    <div>@Html.DisplayFor(model => model.ProductID)</div>
+    <label asp-for="StockLevel" class="control-label"></label>
+    <div>@Html.DisplayFor(model => model.StockLevel)</div>
+    <input asp-for="StockLevel" class="form-control" />
+    <div asp-validation-for="StockLevel"></div>
+    <div class="form-group">
+        <input type="submit" value="Update" class="linkButton" />
+    </div>
+</form>
+<a class="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Home Page</a> *@
+<a class="linkButton" asp-area="" asp-controller="Owner" asp-action="OwnerIndex">Home Page</a>

@@ -1,55 +1,41 @@
-﻿<!DOCTYPE html>
-@*
-
-*@
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+﻿@model WDT_Assignment_2.Models.Cart
+@*Ok, I think this means cart has been passed*@
+    <div>
         <div>
-            <div>
-         <table class="table">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>
+                         @foreach(var item in Model.ItemsInCart) {
+                        
+                         @Html.DisplayFor(modelItem => item.Product.Name)
+                        }
                             ProductID
                         </th>
                         <th>
                             Product Name
                         </th>
-
                         <th>
-                            Quantity   
-                         </th>      
-
+                            Quantity
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @*
-                      Foreach loop to dynamically generate products here  
-                   *@
-                        <tr>
-                            <td>
-                                SAMPLE ID
-                            </td>
-                            <td>
-                                SAMPLE NAME
-                            </td>
-                            <td>
-                                SAMPLE REMOVE FROM CART
-                                @* Need to set max value as current stores stock level*@
-                            </td>
-
-                        </tr>
-
+                    @* Foreach loop to dynamically generate products here *@
+                    <tr>
+                        <td>
+                            SAMPLE ID
+                        </td>
+                        <td>
+                            SAMPLE NAME
+                        </td>
+                        <td>
+                            SAMPLE REMOVE FROM CART @* Need to set max value as current stores stock level*@
+                        </td>
+                    </tr>
                 </tbody>
             </table>
-            </div>
-            <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerCheckOut">Check Out</a> 
         </div>
-        <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a> 
-
-</body>
-</html>
+        <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerCheckOut">Check Out</a>
+    </div>
+    <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a>

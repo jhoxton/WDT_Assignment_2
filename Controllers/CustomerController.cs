@@ -15,6 +15,12 @@ namespace WDT_Assignment_2.Controllers
     [Authorize(Roles = Constants.CustomerRole)]
     public class CustomerController : Controller
     {
+        public static Cart cart = new Cart();
+        public CartItem test = new CartItem();
+
+
+
+
         private readonly Context _context;
 
         public CustomerController(Context context)
@@ -32,7 +38,18 @@ namespace WDT_Assignment_2.Controllers
         }
         public IActionResult CustomerViewCart()
         {
-            return View();
+            //Currently, this doubles each time so this will clearly need to be moved
+            Product testProduct = new Product();
+            testProduct.Name = "Rabbit";
+            testProduct.ProductID = 1;
+            testProduct.Price = 199.00m;
+            test.Product = testProduct;
+            
+            test.StoreID = 1;
+
+            cart.ItemsInCart.Add(test);   
+            
+            return View(cart);
         }
         public IActionResult CustomerPurchaseHistory()
         {
@@ -78,7 +95,10 @@ namespace WDT_Assignment_2.Controllers
 
         //    return View(passStore);
         //}
-
+        public IActionResult addToCart()
+        {
+            return View();
+        }
 
 
         public IActionResult CustomerCheckOut()

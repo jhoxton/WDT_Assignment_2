@@ -5,81 +5,67 @@ If anything isn't happening the way it should, remember I removed
 *@
 <h2> @Html.DisplayFor(model => model.Name)</h2>
     
-<table class="table">
-    <thead>
-        <tr>
 
-            <th>
-                Product ID
-            </th>
-            <th>
-                Current Stock Level
-            </th>
-            <th>
-                Select Quantity
-            </th>
-            <th>
-                Add to Cart
-            </th>
-        </tr>
-    </thead>
-        <tbody>
-        @* COPY THE FORM AND POST FROM OWNER CONTROL*@
-          @foreach(var item in Model.StoreInventory) {
+<form asp-action="addToCart"> 
+    @* THIS METHOD ERE CALLS THE POST ONE*@
+    <table class="table">
+        <thead>
             <tr>
+                <th>
+                    Product Name
+                </th>
+                <th>
+                    Product ID
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Current Stock Level
+                </th>
+                <th>
+                    Select Quantity
+                </th>
+                <th>
+                    Add to Cart
+                </th>
+            </tr>
+         </thead>    
+        <tbody>
+            <div asp-validation-summary="ModelOnly"></div>
+             @foreach(var item in Model.StoreInventory) {
+            <tr>
+                 
+                <td>
+                     @Html.DisplayFor(modelItem => item.Product.Name)
+
+            </td>
                 <td>
                  
                     @Html.DisplayFor(modelItem => item.ProductID)
                  
                 
                 </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Product.Price)
+                </th>
                 <td>
                    @Html.DisplayFor(modelItem => item.StockLevel)
-                </td>                    
+                </td>         
                 <td>
-                 @Html.DisplayFor(modelItem => item.Product.ProductID)
+                   <input @*asp-for="StockLevel"*@ class="form-control" />
+                  @*  <div asp-validation-for="StockLevel"></div> *@
                 </td>
                 <td>
-                
-                </td>
-                <td>
-                    
+                    <div class="form-group">
+                        <input type="submit" value="Update"  />
+                    </div>
                 </td>
             </tr>
             }
         </tbody>
-</table>
-                <input type="number" name="quantity" min="1" max="100" value="Add"> @* Need to set max value as current stores stock level*@
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-            </th>
-            <th>
-            </th>
-            <th>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                
-            </td>
-            <td>
-                
-            </td>
-            <td>
-                
-            </td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-</table>
+    </table>
+</form>
 <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerViewCart">View Cart</a>
 <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerStoreSelect">Change Store</a>
 <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a>
