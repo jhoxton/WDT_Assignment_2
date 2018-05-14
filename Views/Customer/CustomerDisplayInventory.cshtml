@@ -1,71 +1,62 @@
 ﻿@model WDT_Assignment_2.Models.Store 
-@* http://localhost:5000/Customer/CustomerDisplayInventory
-If anything isn't happening the way it should, remember I removed 
-//builder.Entity<StoreInventory>().ToTable("StoreInventory"); from Context
-*@
-<h2> @Html.DisplayFor(model => model.Name)</h2>
-    
-
-<form asp-action="addToCart"> 
-    @* THIS METHOD ERE CALLS THE POST ONE*@
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Product Name
-                </th>
-                <th>
-                    Product ID
-                </th>
-                <th>
-                    Price
-                </th>
-                <th>
-                    Current Stock Level
-                </th>
-                <th>
-                    Select Quantity
-                </th>
-                <th>
-                    Add to Cart
-                </th>
-            </tr>
-         </thead>    
-        <tbody>
-            <div asp-validation-summary="ModelOnly"></div>
-             @foreach(var item in Model.StoreInventory) {
-            <tr>
-                 
-                <td>
-                     @Html.DisplayFor(modelItem => item.Product.Name)
-
-            </td>
-                <td>
-                 
-                    @Html.DisplayFor(modelItem => item.ProductID)
-                 
-                
-                </td>
-                <th>
-                    @Html.DisplayFor(modelItem => item.Product.Price)
-                </th>
-                <td>
-                   @Html.DisplayFor(modelItem => item.StockLevel)
-                </td>         
-                <td>
-                   <input @*asp-for="StockLevel"*@ class="form-control" />
-                  @*  <div asp-validation-for="StockLevel"></div> *@
-                </td>
-                <td>
-                    <div class="form-group">
-                        <input type="submit" value="Update"  />
-                    </div>
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-</form>
-<a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerViewCart">View Cart</a>
-<a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerStoreSelect">Change Store</a>
-<a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a>
+@* http://localhost:5000/Customer/CustomerDisplayInventory If anything isn't happening the way it should, remember I removed //builder.Entity
+<StoreInventory>().ToTable("StoreInventory"); from Context *@
+    <h2> @Html.DisplayFor(model => model.Name)</h2>
+    <form asp-action="addToCart">
+        @* THIS METHOD ERE CALLS THE POST ONE*@
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Product Name
+                    </th>
+                    <th>
+                        Product ID
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Current Stock Level
+                    </th>
+                    <th>
+                        Select Quantity
+                    </th>
+                    <th>
+                        Add to Cart
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <div asp-validation-summary="ModelOnly"></div>
+                @foreach(var item in Model.StoreInventory) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductID)
+                    </td>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.Product.Price)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StockLevel)
+                    </td>
+                    <td>
+                        <input @*asp-for="StockLevel" *@ class="form-control" /> @*
+                        <div asp-validation-for="StockLevel"></div> *@
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input type="submit" value="Update" />
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+    <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerViewCart">View Cart</a>
+    <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerStoreSelect">Change Store</a>
+    <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a>

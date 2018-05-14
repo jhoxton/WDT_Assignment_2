@@ -43,9 +43,9 @@
     text-decoration: none;
     display: inline-block;
     font-size: 15px;
-    margin: 10px 2px;
-
+    margin: 10px 2px
 }
+
 .creditCardForm {
     max-width: 700px;
     background-color: #fff;
@@ -132,9 +132,7 @@
 
 
 
-    .creditCardForm #credit_cards {
-        text-align: left
-    }
+.creditCardForm #credit_cards {
+    text-align: left
 }
-
-
+}

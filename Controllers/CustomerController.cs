@@ -71,6 +71,16 @@ namespace WDT_Assignment_2.Controllers
             {
                 return NotFound();
             }
+           
+            //foreach (var storeCheck in _context.Stores) {
+            //    if(passStore.StoreID == storeCheck.StoreID) {
+            //        passStore.StoreInventory = storeCheck.StoreInventory;
+            //    }
+            //}
+            //foreach (Product productCheck in _context.Products)
+            //{
+              //inner foreach loop  
+            //}
 
             return View(passStore);
         }
