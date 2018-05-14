@@ -1,51 +1,50 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
-     <h3>STORE INVENTORY PAGE</h3>
-      <table class="table">
+﻿
+ @model IEnumerable<WDT_Assignment_2.Models.StoreInventory>
+
+    @{ ViewBag.Title = "Product"; }
+    <h2>Store Inventory</h2>
+    <form method="get">
+        <p>
+            Product Name:
+            <input name="productName" value="@ViewBag.ProductName" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+
+    <table class="table">
         <thead>
             <tr>
                 <th>
-                    ProductID
+                    @Html.DisplayNameFor(model => model.ProductID)
                 </th>
                 <th>
-                    Product Name
+                    @Html.DisplayNameFor(model => model.Product.Name)
                 </th>
                 <th>
-                   Current Stock Level
+                    @Html.DisplayNameFor(model => model.StockLevel)
                 </th>
-                <th>
-                    Set Stock Level       
-                 </th>                
+
             </tr>
         </thead>
         <tbody>
-            @*
-              Foreach loop to dynamically generate products here  
-           *@
-                <tr>
-                    <td>
-                        SAMPLE ID
-                    </td>
-                    <td>
-                        SAMPLE NAME
-                    </td>
-                    <td>
-                        SAMPLE QUANTITY
-                    </td>
-                    <td>
-                       <a asp-area="" asp-controller="Franchise" asp-action="FranchiseSetStock">Set Item Stock Level</a> 
-                            @* Make this a button???*@
-                    </td>
-                </tr>
+            @foreach(var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StockLevel)
+                </td>
 
+            </tr>
+            }
         </tbody>
     </table>
-        <div>  <a class ="linkButton" asp-area="" asp-controller="Franchise" asp-action="FranchiseIndex">Home Page</a> </div>
 
-</body>
-</html>
+        <div>  <a class ="linkButton" asp-area="" asp-controller="Franchise" asp-action="FranchiseIndex">Home Page</a> 
+                    <a class ="linkButton" asp-area="" asp-controller="Franchise" asp-action="FranchiseStockRequest">Create Stock Request</a>
+            <a class ="linkButton" asp-area="" asp-controller="Franchise" asp-action="FranchiseNewItem">Request New Stock Item</a></div>
+

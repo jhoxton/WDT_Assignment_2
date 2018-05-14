@@ -1,41 +1,42 @@
-﻿@model WDT_Assignment_2.Models.Cart
-@*Ok, I think this means cart has been passed*@
+﻿@model WDT_Assignment_2.Models.Cart @*Ok, I think this means cart has been passed*@
+<div>
     <div>
-        <div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                         @foreach(var item in Model.ItemsInCart) {
-                        
-                         @Html.DisplayFor(modelItem => item.Product.Name)
-                        }
-                            ProductID
-                        </th>
-                        <th>
-                            Product Name
-                        </th>
-                        <th>
-                            Quantity
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @* Foreach loop to dynamically generate products here *@
-                    <tr>
-                        <td>
-                            SAMPLE ID
-                        </td>
-                        <td>
-                            SAMPLE NAME
-                        </td>
-                        <td>
-                            SAMPLE REMOVE FROM CART @* Need to set max value as current stores stock level*@
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerCheckOut">Check Out</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        ProductID
+                    </th>
+                    <th>
+                        Product Name
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Remove From Cart
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model.ItemsInCart) { @* Foreach loop to dynamically generate products here *@
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.ProductID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        SAMPLE REMOVE FROM CART
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
     </div>
-    <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a>
+    <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerCheckOut">Check Out</a>
+</div>
+<a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a>

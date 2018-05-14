@@ -64,47 +64,37 @@ namespace WDT_Assignment_2.Controllers
             }
 
             var passStore = await _context.Stores
+
                 .Include(c => c.StoreInventory)
+
+
                 .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.StoreID == id);
+
             if (passStore == null)
             {
                 return NotFound();
             }
-           
-            //foreach (var storeCheck in _context.Stores) {
-            //    if(passStore.StoreID == storeCheck.StoreID) {
-            //        passStore.StoreInventory = storeCheck.StoreInventory;
-            //    }
-            //}
-            //foreach (Product productCheck in _context.Products)
-            //{
-              //inner foreach loop  
-            //}
 
             return View(passStore);
         }
+        //HOW DO I COMBINE THESE TWO METHODS????
+        public async Task<IActionResult> CustomerDisplayInventory(string productName, int id)
+        {
+            var query = _context.StoreInventory.Include(x => x.Product).Select(x => x);
+            if (!string.IsNullOrWhiteSpace(productName))
+            {
+                query = query.Where(x => x.Product.Name.Contains(productName));
+                ViewBag.ProductName = productName;
+            }
+            query = query.OrderBy(x => x.Product.Name);
 
-        //public IActionResult CustomerDisplayInventory(int id) {
+            return View(await query.ToListAsync());
 
-        //    int IDcheck = id;
-        //    Store passStore = new Store();
-
-        //    foreach(Store test in _context.Stores) {
-        //        if(test.StoreID == IDcheck) {
-        //            passStore = test;
-
-        //        }
-        //     //Something is getting passed to the page, just need to validate the data
-        //    }
-
-        //    //NEED TO FIND A WAY TO ADD AND VERIFY THE STORE
-        //    //Instead of this, you will need to find the store inventory and pass it to another method
-        //    // which returns the view. The view will then have to take the Store Inventory as an argument
+        }
 
 
-        //    return View(passStore);
-        //}
+       
         public IActionResult addToCart()
         {
             return View();

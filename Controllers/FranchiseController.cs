@@ -16,7 +16,13 @@ namespace WDT_Assignment_2.Controllers
     [Authorize(Roles = Constants.FranchiseRole)]
     public class FranchiseController : Controller
     {
-        // GET: /<controller>/
+
+        private readonly Context _context;
+
+        public FranchiseController(Context context)
+        {
+            _context = context;
+        }
 
         public IActionResult Login()
         {
@@ -28,9 +34,19 @@ namespace WDT_Assignment_2.Controllers
             return View();
         }
 
-        public IActionResult FranchiseInventory()
+
+        public async Task<IActionResult> FranchiseInventory(string productName, int id)
         {
-            return View();
+            var query = _context.StoreInventory.Include(x => x.Product).Select(x => x);
+            if (!string.IsNullOrWhiteSpace(productName))
+            {
+                query = query.Where(x => x.Product.Name.Contains(productName));
+                ViewBag.ProductName = productName;
+            }
+            query = query.OrderBy(x => x.Product.Name);
+
+            return View(await query.ToListAsync());
+
         }
         public IActionResult FranchiseStockRequest()
         {
