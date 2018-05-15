@@ -87,11 +87,11 @@ namespace WDT_Assignment_2.Controllers
             }
             storeInvSelect = storeInvSelect.OrderBy(x => x.Product.Name);
           
-            foreach(var test in storeInvSelect) {
-                if(test.StoreID == id) {
-                    storeInvSelect.
-                }
-            }
+            //foreach(var test in storeInvSelect) {
+            //    if(test.StoreID == id) {
+            //        storeInvSelect.
+            //    }
+            //}
 
             return View(await storeInvSelect.ToListAsync());
 
