@@ -78,21 +78,26 @@ namespace WDT_Assignment_2.Controllers
         //HOW DO I COMBINE THESE TWO METHODS????
         public async Task<IActionResult> CustomerDisplayInventory(string productName, int id)
         {
-            var query = _context.StoreInventory.Include(x => x.Product).Select(x => x);
+            var storeInvSelect = _context.StoreInventory.Include(x => x.Product).Select(x => x);
                                
             if (!string.IsNullOrWhiteSpace(productName))
             {
-                query = query.Where(x => x.Product.Name.Contains(productName));
+                storeInvSelect = storeInvSelect.Where(x => x.Product.Name.Contains(productName));
                 ViewBag.ProductName = productName;
             }
-            query = query.OrderBy(x => x.Product.Name);
+            storeInvSelect = storeInvSelect.OrderBy(x => x.Product.Name);
+          
+            foreach(var test in storeInvSelect) {
+                if(test.StoreID == id) {
+                    storeInvSelect.
+                }
+            }
 
-            return View(await query.ToListAsync());
+            return View(await storeInvSelect.ToListAsync());
 
         }
 
 
-       
         public IActionResult addToCart()
         {
             return View();
@@ -107,10 +112,6 @@ namespace WDT_Assignment_2.Controllers
         {
             return View();
         }
-       
-        //public IActionResult populateStore(Store passingStore)
-        //{
-        //    return RedirectToAction(nameof(CustomerIndex));
-        //}
+
     }
 }
