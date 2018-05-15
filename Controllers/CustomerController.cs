@@ -75,10 +75,13 @@ namespace WDT_Assignment_2.Controllers
 
         //    return View(passStore);
         //}
+
+
         //HOW DO I COMBINE THESE TWO METHODS????
         public async Task<IActionResult> CustomerDisplayInventory(string productName, int id)
         {
-            var storeInvSelect = _context.StoreInventory.Include(x => x.Product).Select(x => x);
+            var storeInvSelect = _context.StoreInventory.Include(x => x.Product).
+                                         Where(x => x.StoreID == id).Select(x => x);
                                
             if (!string.IsNullOrWhiteSpace(productName))
             {
@@ -86,12 +89,14 @@ namespace WDT_Assignment_2.Controllers
                 ViewBag.ProductName = productName;
             }
             storeInvSelect = storeInvSelect.OrderBy(x => x.Product.Name);
-          
+
             //foreach(var test in storeInvSelect) {
             //    if(test.StoreID == id) {
             //        storeInvSelect.
             //    }
             //}
+
+            ViewBag.StoreName = (await _context.Stores.SingleAsync(x => x.StoreID == id)).Name;
 
             return View(await storeInvSelect.ToListAsync());
 

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WDT_Assignment_2.Models;
 using WDT_Assignment_2.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -37,7 +38,8 @@ namespace WDT_Assignment_2.Controllers
 
         public async Task<IActionResult> FranchiseInventory(string productName, int id)
         {
-            var query = _context.StoreInventory.Include(x => x.Product).Select(x => x);
+            var query = _context.StoreInventory.Include(x => x.Product).Select(x => x).Where(x => x.StoreID == 1).Select(x => x);
+                
             if (!string.IsNullOrWhiteSpace(productName))
             {
                 query = query.Where(x => x.Product.Name.Contains(productName));
@@ -48,10 +50,43 @@ namespace WDT_Assignment_2.Controllers
             return View(await query.ToListAsync());
 
         }
+
+        //FranchiseStockRequest GET
         public IActionResult FranchiseStockRequest()
         {
+            currentStoreProducts();
             return View();
         }
+
+        //FranchiseStockRequest POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> FranchiseStockRequest([Bind("ProductID,Quantity,StoreID")] StockRequest stockRequest)
+        {
+            stockRequest.StoreID = 1;
+           
+            if (ModelState.IsValid)
+            {
+                _context.Add(stockRequest);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(FranchiseIndex));
+            }
+            //PopulateDepartmentsDropDownList(stockRequest.Store.StoreInventory);
+
+
+            return View(stockRequest);
+        }
+
+        private void currentStoreProducts(object selectedStore = null)
+        {
+            //THIS IS ONLY CREATING STOCK REQUESTS N PRODUCT 1
+            var productQuery = from d in _context.StoreInventory.Where(d => d.StoreID == 1)
+                                 orderby d.Product.ProductID
+                                   select d;
+            
+            ViewBag.StoreInventory = new SelectList(productQuery.AsNoTracking(),"ProductID","StoreID");
+        }
+
         public IActionResult FranchiseSetStock()
         {
             return View();
