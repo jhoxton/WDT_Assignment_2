@@ -82,9 +82,12 @@ namespace WDT_Assignment_2.Controllers
         {
             //THIS IS ONLY CREATING STOCK REQUESTS N PRODUCT 1
             var productQuery = from x in _context.StoreInventory.Where(x => x.StoreID == 1)
-                               orderby x.Product.ProductID
+                             .Include(x => x.Product)
+                             .Select(x => x)
+                             orderby x.Product.ProductID
                                    select x;
-            ViewBag.StoreInventory = new SelectList(productQuery, "ProductID", "StoreID");
+            
+            ViewBag.StoreInventory = new SelectList(productQuery, "ProductID", "Product.Name");
         }
 
         public IActionResult FranchiseSetStock()
