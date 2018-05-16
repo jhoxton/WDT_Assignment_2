@@ -35,49 +35,35 @@ namespace WDT_Assignment_2.Controllers
         }
         public IActionResult CustomerViewCart()
         {
+
             //Currently, this doubles each time so this will clearly need to be moved
             Product testProduct = new Product();
             testProduct.Name = "Rabbit";
             testProduct.ProductID = 1;
             testProduct.Price = 199.00m;
             test.Product = testProduct;
-            
+
             test.StoreID = 1;
 
-            cart.ItemsInCart.Add(test);   
-            
+            cart.ItemsInCart.Add(test);
+
+            //RemoveFromCart(test);
+
             return View(cart);
         }
+        public IActionResult RemoveFromCart(CartItem item)
+        {
+
+            cart.ItemsInCart.Remove(item);
+            //CustomerViewCart();
+            return View(cart);
+        }
+
         public IActionResult CustomerPurchaseHistory()
         {
             return View();
         }
 
-        //public async Task<IActionResult> CustomerDisplayInventory(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var passStore = await _context.Stores
-
-        //        .Include(c => c.StoreInventory)
-
-
-        //        .AsNoTracking()
-        //        .SingleOrDefaultAsync(m => m.StoreID == id);
-
-        //    if (passStore == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(passStore);
-        //}
-
-
-        //HOW DO I COMBINE THESE TWO METHODS????
         public async Task<IActionResult> CustomerDisplayInventory(string productName, int id)
         {
             var storeInvSelect = _context.StoreInventory.Include(x => x.Product).
@@ -90,11 +76,6 @@ namespace WDT_Assignment_2.Controllers
             }
             storeInvSelect = storeInvSelect.OrderBy(x => x.Product.Name);
 
-            //foreach(var test in storeInvSelect) {
-            //    if(test.StoreID == id) {
-            //        storeInvSelect.
-            //    }
-            //}
 
             ViewBag.StoreName = (await _context.Stores.SingleAsync(x => x.StoreID == id)).Name;
 

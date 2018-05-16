@@ -62,6 +62,7 @@ namespace WDT_Assignment_2.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> FranchiseStockRequest([Bind("ProductID,Quantity,StoreID")] StockRequest stockRequest)
+        //Based on the ContosoUniversity example
         {
             stockRequest.StoreID = 1;
            
@@ -77,14 +78,13 @@ namespace WDT_Assignment_2.Controllers
             return View(stockRequest);
         }
 
-        private void currentStoreProducts(object selectedStore = null)
+        private void currentStoreProducts()
         {
             //THIS IS ONLY CREATING STOCK REQUESTS N PRODUCT 1
-            var productQuery = from d in _context.StoreInventory.Where(d => d.StoreID == 1)
-                                 orderby d.Product.ProductID
-                                   select d;
-            
-            ViewBag.StoreInventory = new SelectList(productQuery.AsNoTracking(),"ProductID","StoreID");
+            var productQuery = from x in _context.StoreInventory.Where(x => x.StoreID == 1)
+                               orderby x.Product.ProductID
+                                   select x;
+            ViewBag.StoreInventory = new SelectList(productQuery, "ProductID", "StoreID");
         }
 
         public IActionResult FranchiseSetStock()

@@ -1,4 +1,5 @@
-﻿@model WDT_Assignment_2.Models.Cart @*Ok, I think this means cart has been passed*@
+﻿@model WDT_Assignment_2.Models.Cart 
+@*Ok, I think this means cart has been passed*@
 <div>
     <div>
         <table class="table">
@@ -28,9 +29,11 @@
                         @Html.DisplayFor(modelItem => item.Product.Name)
                     </td>
                     <td>
+                         @Html.DisplayFor(modelItem => item.Product.Price)
                     </td>
                     <td>
-                        SAMPLE REMOVE FROM CART
+                          <a asp-action="RemoveFromCart" asp-route-id="@item">Remove Item</a>
+ 
                     </td>
                 </tr>
                 }

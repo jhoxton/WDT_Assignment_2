@@ -2,12 +2,15 @@
 
 @{
     ViewData["Title"] = "Create";
+
 }
+
 
 <h3>Create New Stock Request</h3>
 
 
-<hr />
+<hr/>
+@* Based on the ContosoUniversity example*@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="FranchiseStockRequest">
@@ -19,22 +22,70 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="StoreID" class="control-label"></label>
+              
+                <label asp-for="ProductID" class="control-label"></label>
                 
-                <select asp-for="ProductID" class="form-control" asp-items="ViewBag.StoreInventory">
+                <select asp-for="ProductID" class="form-control" asp-items="@ViewBag.StoreInventory">
+                    
                     <option value="ProductID">Select Product</option>
                 </select>
                 <span asp-validation-for="ProductID" class="text-danger" />
             </div>  
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="linkButton" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-   
-</div>
 
 
+@*     <form asp-action="FranchiseStockRequest">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                  
+                    @Html.DisplayNameFor(model => model.ProductID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StockLevel)
+                </th>
+                <th>
+                    Quantity to purchase
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StockLevel)
+                </td>
+                <td>
+                                        <input  class="form-control" /> 
+                        <div asp-validation-for="StockLevel"></div> 
+                </td>
+                <td>
+                                       
+                            <input type="submit" value="Add to cart" />
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+        </form>
+
+
+
+        *@
