@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach(var item in Model.ItemsInCart) { @* Foreach loop to dynamically generate products here *@
+                @foreach(var item in Model.ItemsInCart) { 
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Product.ProductID)
@@ -32,7 +32,7 @@
                          @Html.DisplayFor(modelItem => item.Product.Price)
                     </td>
                     <td>
-                          <a asp-action="RemoveFromCart" asp-route-id="@item">Remove Item</a>
+                          <a asp-action="RemoveFromCart" asp-route-id="@item.Product">Remove Item</a>
  
                     </td>
                 </tr>

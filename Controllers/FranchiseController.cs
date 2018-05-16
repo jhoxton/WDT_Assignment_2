@@ -80,7 +80,7 @@ namespace WDT_Assignment_2.Controllers
 
         private void currentStoreProducts()
         {
-            //THIS IS ONLY CREATING STOCK REQUESTS N PRODUCT 1
+
             var productQuery = from x in _context.StoreInventory.Where(x => x.StoreID == 1)
                              .Include(x => x.Product)
                              .Select(x => x)

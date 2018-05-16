@@ -91,14 +91,10 @@ namespace WDT_Assignment_2.Controllers
             {
                 if (quantCrossCheck > ownerQuant.StockLevel)
                 {
-
-                    //PRINT SOMETHING HERE
-                    //return NotFound();
-
+                    ModelState.AddModelError("", "Unable to process stock update");
                 }
                 else
                 {
-
                     //Updates the OwnerInvetory
                     foreach (var test in _context.OwnerInventory)
                     {
@@ -110,7 +106,6 @@ namespace WDT_Assignment_2.Controllers
                     }
                     //Updates the store inventory
                     await updateStore(requestProcess.StoreID, requestProcess);
-
 
                     //Removes the stock request
                     _context.StockRequests.Remove(requestProcess);
@@ -187,9 +182,7 @@ namespace WDT_Assignment_2.Controllers
                 catch (DbUpdateException /* ex */ )
                 {
                     //Log the error (uncomment ex variable name and write a log.)
-                    ModelState.AddModelError("", "Unable to save changes. " +
-                        "Try again, and if the problem persists, " +
-                        "see your system administrator.");
+                    ModelState.AddModelError("", "Unable to save changes.");
                 }
                 return RedirectToAction(nameof(OwnerIndex));
             }

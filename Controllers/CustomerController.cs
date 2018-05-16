@@ -18,6 +18,8 @@ namespace WDT_Assignment_2.Controllers
                     public static Cart cart = new Cart();
                     public CartItem test = new CartItem();
 
+        //static List<Product> intList = new List<Product>();
+
         private readonly Context _context;
 
         public CustomerController(Context context)
@@ -27,16 +29,6 @@ namespace WDT_Assignment_2.Controllers
         // GET: /<controller>/
         public IActionResult CustomerIndex()
         {
-            return View();
-        }
-        public IActionResult CustomerStoreSelect()
-        {
-            return View();
-        }
-        public IActionResult CustomerViewCart()
-        {
-
-            //Currently, this doubles each time so this will clearly need to be moved
             Product testProduct = new Product();
             testProduct.Name = "Rabbit";
             testProduct.ProductID = 1;
@@ -46,17 +38,43 @@ namespace WDT_Assignment_2.Controllers
             test.StoreID = 1;
 
             cart.ItemsInCart.Add(test);
-
-            //RemoveFromCart(test);
-
-            return View(cart);
+            return View();
         }
+        public IActionResult CustomerStoreSelect()
+        {
+
+            return View();
+        }
+
+
+        // GET: Cart
+        public IActionResult CustomerViewCart()
+        {
+
+            if(cart != null) {
+                return View(cart);
+            } else {
+                return View();
+            }
+            //Product testProduct = new Product();
+            //testProduct.Name = "Rabbit";
+            //testProduct.ProductID = 1;
+            //testProduct.Price = 199.00m;
+            //test.Product = testProduct;
+
+            //test.StoreID = 1;
+
+            //cart.ItemsInCart.Add(test);
+
+
+        }
+
         public IActionResult RemoveFromCart(CartItem item)
         {
 
             cart.ItemsInCart.Remove(item);
             //CustomerViewCart();
-            return View(cart);
+            return RedirectToAction(nameof(CustomerViewCart));
         }
 
         public IActionResult CustomerPurchaseHistory()
