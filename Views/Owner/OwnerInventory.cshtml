@@ -1,4 +1,5 @@
 ﻿ @model IEnumerable<WDT_Assignment_2.Models.OwnerInventory>
+
     @{ ViewBag.Title = "Product"; }
     <h2>Owner Inventory</h2>
     <form method="get">
@@ -38,9 +39,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.StockLevel)
                 </td>
-                <td>
 
-                </td>
                 <td>
                     <a asp-action="OwnerSetStock" asp-route-id="@item.ProductID">Set Stock</a>
                 </td>

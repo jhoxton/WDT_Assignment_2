@@ -1,4 +1,4 @@
-﻿ @model WDT_Assignment_2.Models.OwnerInventory 
+﻿@model WDT_Assignment_2.Models.OwnerInventory 
 @{ ViewData["Title"] = "OwnerSetStock"; } @* http://localhost:5000/Owner/OwnerSetStock *@
 <h3>Set Item Stock Level</h3>
 <form asp-action="OwnerSetStock">
@@ -31,11 +31,13 @@
                     </div>
                     <div>@Html.DisplayFor(model => model.ProductID)</div>
                 </td>
+
+                @*NEED TO GET THIS BACK TO DISPLAYING PRODUCT NAME
                 @foreach(var item in Model) {
                 <td>
                     <div>@Html.DisplayFor(model => model.StoreInventory.Name)</div>
                 </td>
-                }
+                }*@
                 <td>
                     <div>@Html.DisplayFor(model => model.StockLevel)</div>
                 </td>

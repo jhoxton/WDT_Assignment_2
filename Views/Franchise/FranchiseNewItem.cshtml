@@ -1,9 +1,30 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
+﻿@model WDT_Assignment_2.Models.StockRequest 
+@{ ViewData["Title"] = "Create New Stock Request"; }
+<h3>Create New Stock Request</h3>
+<hr/> @* Based on the ContosoUniversity example*@
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="FranchiseStockRequest">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductID" class="control-label"></label>
+                <select asp-for="ProductID" class="form-control" asp-items="@ViewBag.OwnerInventory">
+                    <option value="ProductID">Select Product</option>
+                </select>
+                <span asp-validation-for="ProductID" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="linkButton" /> @*If this cocks up, change the name of "Create"*@
+            </div>
+        </form>
+    </div>
+</div>
+@*
 <body>
      <h3>Select New Item for Stock Request</h3>
         <h4>Owner Inventory</h4>
@@ -27,9 +48,7 @@
             </tr>
         </thead>
         <tbody>
-            @*
-              Foreach loop to dynamically generate OWNERS products here  
-           *@
+
                 <tr>
                     <td>
                         SAMPLE ID
@@ -44,7 +63,7 @@
                         
                     <a  asp-area="" asp-controller="Franchise" asp-action="FranchiseSetStock">Process Stock Request(dynamic)</a>
 
-                            @* Make this a button???*@
+                      
                         
                     </td>
                 </tr>
@@ -54,3 +73,4 @@
     <div> <a class="linkButton" asp-area="" asp-controller="Franchise" asp-action="FranchiseIndex">Home Page</a> </div>
 </body>
 </html>
+*@

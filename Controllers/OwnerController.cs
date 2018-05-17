@@ -83,40 +83,47 @@ namespace WDT_Assignment_2.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var requestProcess = await _context.StockRequests.SingleOrDefaultAsync(m => m.StockRequestID == id);
-
-            int quantCrossCheck = requestProcess.Quantity;
+            var ownerInventory = await _context.OwnerInventory.SingleOrDefaultAsync(m => m.ProductID == requestProcess.ProductID);
+            var storeInventory = await _context.StoreInventory.SingleOrDefaultAsync(x => x.StoreID == requestProcess.StoreID && x.ProductID == requestProcess.ProductID);
 
             //Checking valid owner stock level
-            foreach (var ownerQuant in _context.OwnerInventory.ToList())
+
+            if (requestProcess.Quantity > ownerInventory.StockLevel)
             {
-                if (quantCrossCheck > ownerQuant.StockLevel)
-                {
-                    ModelState.AddModelError("", "Unable to process stock update");
-                }
-                else
-                {
-                    //Updates the OwnerInvetory
-                    foreach (var test in _context.OwnerInventory)
-                    {
-                        if (test.ProductID == requestProcess.ProductID)
-                        {
-                            test.StockLevel = (test.StockLevel - quantCrossCheck);
-                        }
-
-                    }
-                    //Updates the store inventory
-                    await updateStore(requestProcess.StoreID, requestProcess);
-
-                    //Removes the stock request
-                    _context.StockRequests.Remove(requestProcess);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(OwnerProcessStockRequest));
-                }
+                ModelState.AddModelError("", "Unable to process stock update");
             }
+            else
+            {
+                //Updates the OwnerInvetory
+                ownerInventory.StockLevel -= requestProcess.Quantity;
+
+                if(storeInventory == null)
+                {
+                    _context.StoreInventory.Add(new StoreInventory
+                    {
+                        ProductID = requestProcess.ProductID,
+                        StoreID = requestProcess.StoreID,
+                        StockLevel = requestProcess.Quantity
+                    });
+                }
+                else {
+                    storeInventory.StockLevel += requestProcess.Quantity;
+                }
+
+                //Updates the store inventory
+                // await UpdateStore(requestProcess.StoreID, requestProcess);
+
+                //Removes the stock request
+                _context.StockRequests.Remove(requestProcess);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(OwnerProcessStockRequest));
+            }
+
             return View();
         }
 
-        public async Task<String> updateStore(int id, StockRequest requestProcess)
+        /*
+        public async Task<String> UpdateStore(int id, StockRequest requestProcess)
         {
 
             int storeID = requestProcess.StoreID;
@@ -128,6 +135,7 @@ namespace WDT_Assignment_2.Controllers
             await _context.SaveChangesAsync();
             return " ";
         }
+        */
 
         public IActionResult OwnerIndex()
         {
@@ -160,7 +168,7 @@ namespace WDT_Assignment_2.Controllers
             //////
             return View(product);
         }
-        [HttpPost, ActionName("OwnerSetStock")] 
+        [HttpPost, ActionName("OwnerSetStock")]
         //This is the method the following will run after
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> OwnerSetStockPost(int? id)

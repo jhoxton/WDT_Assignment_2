@@ -89,14 +89,77 @@ namespace WDT_Assignment_2.Controllers
             
             ViewBag.StoreInventory = new SelectList(productQuery, "ProductID", "Product.Name");
         }
-
-        public IActionResult FranchiseSetStock()
-        {
-            return View();
-        }
+        ///
+        //FranchiseStockRequest GET
         public IActionResult FranchiseNewItem()
         {
+            currentOwnerProducts();
             return View();
         }
+
+        //FranchiseStockRequest POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> FranchiseNewItem([Bind("ProductID,Quantity,StoreID")] StockRequest stockRequest)
+        //Based on the ContosoUniversity example
+        {
+            stockRequest.StoreID = 1;
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(stockRequest);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(FranchiseIndex));
+            }
+            //PopulateDepartmentsDropDownList(stockRequest.Store.StoreInventory);
+
+
+            return View(stockRequest);
+        }
+
+
+       
+
+        private List<Product> currentOwnerProducts()
+        {
+            var products = _context.Products.Where(x => !_context.StoreInventory.Any(y => y.ProductID == x.ProductID && y.StoreID == 1));
+
+            ViewBag.OwnerInventory = new SelectList(products, "ProductID", "Name");
+            return products.ToList();
+            //return View();
+
+            /*
+
+            var ownerQuery = _context.OwnerInventory
+                                     .Include(x => x.Product);
+
+            //Gets the Store inventory
+            var storeQuery = from x in _context.StoreInventory
+                 .Where(x => x.StoreID == 1)    
+                 //.Where !store.Contains(x.ProductID)
+                 .Include(x => x.Product)
+                 .Select(x => x)
+                             orderby x.Product.ProductID
+                             select x;
+
+            //Compares the two and removes duplicates
+            foreach(var owner in ownerQuery){
+                foreach(var store in storeQuery) {
+                    if(owner.ProductID == store.ProductID) {
+                        //ownerQuery.Add(store);
+                        //ownerQuery.Remove(owner);
+                    } 
+                }
+            }
+
+            ViewBag.OwnerInventory = new SelectList(ownerQuery, "ProductID", "Product.Name");
+            //ViewBag.OwnerInventory.add();
+            */
+        }
+
+
+        ///
+
+
     }
 }

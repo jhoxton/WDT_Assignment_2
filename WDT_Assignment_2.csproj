@@ -35,4 +35,7 @@
   <ItemGroup>
     <None Remove="Views\Owner\UpdateOwnerStock.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Customer\ItemRemoved.cshtml" />
+  </ItemGroup>
 </Project>

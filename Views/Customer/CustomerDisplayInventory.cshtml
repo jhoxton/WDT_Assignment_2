@@ -10,7 +10,7 @@
             <input type="submit" value="Filter" />
         </p>
     </form>
-     <form asp-action="addToCart">
+     <form asp-action="CustomerViewCart">
     <table class="table">
         <thead>
             <tr>
@@ -43,7 +43,7 @@
                     @Html.DisplayFor(modelItem => item.StockLevel)
                 </td>
                 <td>
-                                        <input  class="form-control" /> 
+                        <input  class="form-control" /> 
                         <div asp-validation-for="StockLevel"></div> 
                 </td>
                 <td>

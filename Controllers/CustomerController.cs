@@ -71,7 +71,7 @@ namespace WDT_Assignment_2.Controllers
 
         public IActionResult RemoveFromCart(CartItem item)
         {
-
+            //Dosen't work! 
             cart.ItemsInCart.Remove(item);
             //CustomerViewCart();
             return RedirectToAction(nameof(CustomerViewCart));
@@ -106,6 +106,7 @@ namespace WDT_Assignment_2.Controllers
         {
             return View();
         }
+       
 
 
         public IActionResult CustomerCheckOut()
