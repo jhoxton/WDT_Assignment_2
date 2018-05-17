@@ -32,12 +32,13 @@
                     <div>@Html.DisplayFor(model => model.ProductID)</div>
                 </td>
 
-                @*NEED TO GET THIS BACK TO DISPLAYING PRODUCT NAME
-                @foreach(var item in Model) {
+                @*NEED TO GET THIS BACK TO DISPLAYING PRODUCT NAME *@
+                
+            
                 <td>
-                    <div>@Html.DisplayFor(model => model.StoreInventory.Name)</div>
+                    <div>@Html.DisplayFor(model => model.Product.Name)</div>
                 </td>
-                }*@
+
                 <td>
                     <div>@Html.DisplayFor(model => model.StockLevel)</div>
                 </td>

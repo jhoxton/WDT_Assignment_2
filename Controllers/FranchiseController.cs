@@ -104,7 +104,7 @@ namespace WDT_Assignment_2.Controllers
         //Based on the ContosoUniversity example
         {
             stockRequest.StoreID = 1;
-
+            //Hardcoded Store as in line with Assignment specs
             if (ModelState.IsValid)
             {
                 _context.Add(stockRequest);
@@ -123,6 +123,7 @@ namespace WDT_Assignment_2.Controllers
         private List<Product> currentOwnerProducts()
         {
             var products = _context.Products.Where(x => !_context.StoreInventory.Any(y => y.ProductID == x.ProductID && y.StoreID == 1));
+            //Hardcoded Store as in line with Assignment specs
 
             ViewBag.OwnerInventory = new SelectList(products, "ProductID", "Name");
             return products.ToList();
