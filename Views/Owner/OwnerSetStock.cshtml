@@ -32,9 +32,6 @@
                     <div>@Html.DisplayFor(model => model.ProductID)</div>
                 </td>
 
-                @*NEED TO GET THIS BACK TO DISPLAYING PRODUCT NAME *@
-                
-            
                 <td>
                     <div>@Html.DisplayFor(model => model.Product.Name)</div>
                 </td>
@@ -43,7 +40,7 @@
                     <div>@Html.DisplayFor(model => model.StockLevel)</div>
                 </td>
                 <td>
-                    <input asp-for="StockLevel" class="form-control" />
+                    <input asp-for="StockLevel" class="form-control" type="number" min= "1"/>
                     <div asp-validation-for="StockLevel"></div>
                 </td>
                 <td>

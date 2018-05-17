@@ -152,6 +152,7 @@ namespace WDT_Assignment_2.Controllers
             var product = await _context.OwnerInventory
                 .AsNoTracking()
                 .SingleOrDefaultAsync(m => m.ProductID == id);
+            
             if (product == null)
             {
                 return NotFound();
