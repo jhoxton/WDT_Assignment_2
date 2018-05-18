@@ -1,46 +1,31 @@
-﻿@model WDT_Assignment_2.Models.CreditCard
+﻿
 @*
 Validation from adapted from https://tutorialzine.com/2016/11/simple-credit-card-validation-form
 *@
 
 
-
-<form asp-action="CustomerConfirmPurchase">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+<h2>Cofirm Paymnet</h2>
+   
+<form asp-action="CustomerConfirmPurchase" >
+   
+   <div></div>
     <div class="form-group">
-        <label asp-for="Owner" class="control-label"></label>
-        <input asp-for="Owner" class="form-control" />
-        <span asp-validation-for="Owner" class="text-danger"></span>
+        
+        <h4>Name On Card</h4>
+        <input  class="form-control" id="cardOwner" />
+
     </div>
     <div class="form-group">
-        <label asp-for="CVV" class="control-label"></label>
-        <input asp-for="CVV" class="form-control" />
-        <span asp-validation-for="CVV" class="text-danger"></span>
+       <h4>CVV</h4>
+        <input  class="form-control" id="myField" maxlength="3"/>
+       
     </div>
-        <div class="form-group">
-        <label asp-for="CardNumber" class="control-label"></label>
-        <input asp-for="CardNumber" class="form-control" />
-        <span asp-validation-for="CardNumber" class="text-danger"></span>
+    <div class="form-group">
+       <h4>Card Number</h4>
+        <input class="form-control" id="cardNo"/>
+
     </div>
 
-
-
-
-      @*  
-        <form>
-           <div class="form-group owner">
-                <label for="owner">Owner</label>
-                <input type="text" class="form-control" id="owner">
-            </div>
-            <div class="form-group CVV">
-                <label for="cvv">CVV</label>
-                <input type="text" class="form-control" id="cvv" maxlength="3">
-            </div>
-            <div class="form-group" id="card-number-field">
-                <label for="cardNumber">Card Number</label>
-                <input type="text" class="form-control" id="cardNumber" maxlength="19">
-            </div> *@
         
             <div class="form-group" id="expiration-date">
                 <label>Expiration Date</label>
@@ -72,10 +57,11 @@ Validation from adapted from https://tutorialzine.com/2016/11/simple-credit-card
                 <img src="http://localhost:5000/images/mastercard.jpg" id="mastercard">
                 <img src="http://localhost:5000/images/amex.jpg" id="amex">
             </div>
-            <div>   
+              
         
         <div class="form-group">
-        <input type="submit" value="Confirm Purchase" class="linkButton" />
+        <div class="linkButton" onclick="validate()">Purchase</div>
+        <input type="submit" value="Confirm Purchase" class="linkButton" id="submit" style="display: none" />
 
     
           @*  <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerConfirmPurchase">Confirm Purchase</a> *@
@@ -87,4 +73,80 @@ Validation from adapted from https://tutorialzine.com/2016/11/simple-credit-card
         </form>
     
     
+  
+
+
+
+@*@model WDT_Assignment_2.Models.CreditCard
+Validation from adapted from https://tutorialzine.com/2016/11/simple-credit-card-validation-form
+
+
+
+
+<form asp-action="CustomerConfirmPurchase" onsubmit="validate">
+   
+
+    <div class="form-group">
+        <label asp-for="Owner" class="control-label"></label>
+        <input asp-for="Owner" class="form-control" id="cardOwner" />
+        <span asp-validation-for="Owner" class="text-danger" ></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CVV" class="control-label"></label>
+        <input asp-for="CVV" class="form-control" id="myField" />
+        <span asp-validation-for="CCV" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CardNumber" class="control-label"></label>
+        <input asp-for="CardNumber" class="form-control" id="cardNo"/>
+        <span asp-validation-for="CardNumber" class="text-danger"></span>
+    </div>
+
+        
+            <div class="form-group" id="expiration-date">
+                <label>Expiration Date</label>
+                <select>
+                    <option value="01">January</option>
+                    <option value="02">February </option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <select>
+                    <option value="16"> 2016</option>
+                    <option value="17"> 2017</option>
+                    <option value="18"> 2018</option>
+                    <option value="19"> 2019</option>
+                    <option value="20"> 2020</option>
+                    <option value="21"> 2021</option>
+                </select>
+            </div>
+            <div class="form-group" id="credit_cards">
+                <img src="http://localhost:5000/images/visa.jpg" id="visa">
+                <img src="http://localhost:5000/images/mastercard.jpg" id="mastercard">
+                <img src="http://localhost:5000/images/amex.jpg" id="amex">
+            </div>
+              
+        
+        <div class="form-group">
+        <div class="linkButton" onclick="validate()">Click me</div>
+        <input type="submit" value="Confirm Purchase" class="linkButton" id="submit"/>
+
+    
+
+    
+            <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerViewCart">Cancel</a> 
+        </div>
+
+
+        </form>
+    
+    *@
   

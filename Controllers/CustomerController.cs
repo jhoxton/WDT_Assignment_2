@@ -69,8 +69,6 @@ namespace WDT_Assignment_2.Controllers
 
             //cart.ItemsInCart.Add(test);
 
-           
-
         }
 
 
@@ -139,6 +137,7 @@ namespace WDT_Assignment_2.Controllers
         }
         public IActionResult CustomerConfirmPurchase()
         {
+            
             return View();
         }
 
