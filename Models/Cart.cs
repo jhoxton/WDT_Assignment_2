@@ -5,7 +5,7 @@ namespace WDT_Assignment_2.Models
 {
     public class Cart
     {
-        public const string CartSessionKey = "cart";
+        //public const string CartSessionKey = "cart";
 
         public List<StoreInventory> Items { get; set; } = new List<StoreInventory>();
 

@@ -8,7 +8,7 @@
             <input type="submit" value="Filter" />
         </p>
     </form>
-    <form asp-action="AddToCart">
+   
         <table class="table">
             <thead>
                 <tr>
@@ -18,15 +18,16 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Product.Name)
                     </th>
-                    <th>
+                 @*   <th>
                         @Html.DisplayNameFor(model => model.StockLevel)
-                    </th>
+                    </th> *@
                     <th>
-                        Quantity to purchase
+                        Quantity in Stock
                     </th>
                     <th></th>
                 </tr>
             </thead>
+   
             <tbody>
                 @foreach(var item in Model) {
                 <tr>
@@ -39,21 +40,24 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.StockLevel)
                     </td>
-                    <td>
+                  @*  <td>
                         <input class="form-control" type="number" min="1" />
-                        <div asp-validation-for="StockLevel"></div>
-                    </td>
+                        <div asp-validation-for="StockLevel"></div> 
+                    </td> *@
                     <td>
-                        
+                          <form asp-action="AddToCart">
                         <input type="hidden" name="ProductID" value="@item.ProductID" />
                         <input type="hidden" name="StoreID" value="@item.StoreID" />
                         <input type="submit" value="Add to cart" />
+                     </form>
                     </td>
+                
                 </tr>
                 }
+             
             </tbody>
         </table>
-    </form>
+  
     <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerViewCart">View Cart</a>
     <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerStoreSelect">Change Store</a>
     <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a>

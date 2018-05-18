@@ -15,8 +15,8 @@ namespace WDT_Assignment_2.Controllers
     [Authorize(Roles = Constants.CustomerRole)]
     public class CustomerController : Controller
     {
-                    public static Cart cart = new Cart();
-                    public CartItem test = new CartItem();
+        public static Cart cart = new Cart();
+        //public CartItem test = new CartItem();
 
         //static List<Product> intList = new List<Product>();
 
@@ -29,13 +29,13 @@ namespace WDT_Assignment_2.Controllers
         // GET: /<controller>/
         public IActionResult CustomerIndex()
         {
-            Product testProduct = new Product();
-            testProduct.Name = "Rabbit";
-            testProduct.ProductID = 1;
-            testProduct.Price = 199.00m;
-            test.Product = testProduct;
+            //Product testProduct = new Product();
+            //testProduct.Name = "Rabbit";
+            //testProduct.ProductID = 1;
+            //testProduct.Price = 199.00m;
+            //test.Product = testProduct;
 
-            test.StoreID = 1;
+            //test.StoreID = 1;
 
             //cart.ItemsInCart.Add(test);
             return View();
@@ -51,9 +51,12 @@ namespace WDT_Assignment_2.Controllers
         public IActionResult CustomerViewCart()
         {
 
-            if(cart != null) {
+            if (cart != null)
+            {
                 return View(cart);
-            } else {
+            }
+            else
+            {
                 return View();
             }
             //Product testProduct = new Product();
@@ -66,9 +69,19 @@ namespace WDT_Assignment_2.Controllers
 
             //cart.ItemsInCart.Add(test);
 
+           
 
         }
+        //public async Task<IActionResult> RemoveFromCart(int productID, int storeID)
+        //{
+        //    var storeInventory = await _context.StoreInventory.Include(x => x.Product).Include(x => x.Store).
+        //        SingleAsync(x => x.ProductID == productID && x.StoreID == storeID);
 
+        //    storeInventory.Store.StoreInventory.Clear();
+        //    cart.RemoveItem(storeInventory);
+
+        //    return RedirectToAction(nameof(CustomerViewCart));
+        //}
         public IActionResult RemoveFromCart(CartItem item)
         {
             //Dosen't work! 
@@ -86,7 +99,7 @@ namespace WDT_Assignment_2.Controllers
         {
             var storeInvSelect = _context.StoreInventory.Include(x => x.Product).
                                          Where(x => x.StoreID == id).Select(x => x);
-                               
+
             if (!string.IsNullOrWhiteSpace(productName))
             {
                 storeInvSelect = storeInvSelect.Where(x => x.Product.Name.Contains(productName));
@@ -117,14 +130,6 @@ namespace WDT_Assignment_2.Controllers
             //return RedirectToAction("Index");
         }
 
-        //public IActionResult AddToCart()
-        //{
-        //    //return View();
-        //    return RedirectToAction(nameof(CustomerViewCart));
-        //}
-       
-
-
         public IActionResult CustomerCheckOut()
         {
             return View();
@@ -134,7 +139,9 @@ namespace WDT_Assignment_2.Controllers
             return View();
         }
 
- 
+
 
     }
 }
+
+
