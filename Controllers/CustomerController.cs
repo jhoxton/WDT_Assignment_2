@@ -37,7 +37,7 @@ namespace WDT_Assignment_2.Controllers
 
             test.StoreID = 1;
 
-            cart.ItemsInCart.Add(test);
+            //cart.ItemsInCart.Add(test);
             return View();
         }
         public IActionResult CustomerStoreSelect()
@@ -72,7 +72,7 @@ namespace WDT_Assignment_2.Controllers
         public IActionResult RemoveFromCart(CartItem item)
         {
             //Dosen't work! 
-            cart.ItemsInCart.Remove(item);
+            //cart.ItemsInCart.Remove(item);
             //CustomerViewCart();
             return RedirectToAction(nameof(CustomerViewCart));
         }
@@ -102,10 +102,26 @@ namespace WDT_Assignment_2.Controllers
         }
 
 
-        public IActionResult addToCart()
+        public async Task<IActionResult> AddToCart(int productID, int storeID)
         {
-            return View();
+            //var cart = HttpContext.Session.GetCart();
+
+            var storeInventory = await _context.StoreInventory.Include(x => x.Product).Include(x => x.Store).
+                SingleAsync(x => x.ProductID == productID && x.StoreID == storeID);
+
+            storeInventory.Store.StoreInventory.Clear();
+            cart.AddItem(storeInventory);
+
+            //HttpContext.Session.SetCart(cart);
+            return RedirectToAction(nameof(CustomerViewCart));
+            //return RedirectToAction("Index");
         }
+
+        //public IActionResult AddToCart()
+        //{
+        //    //return View();
+        //    return RedirectToAction(nameof(CustomerViewCart));
+        //}
        
 
 
