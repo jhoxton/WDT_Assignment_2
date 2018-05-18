@@ -31,6 +31,8 @@ var validate = function() {
 
     if (validCardOwner && validCCVNo & validCardNo) {
         document.getElementById('submit').click();
+    } else {
+        alert("Please verify your credit card infomation is correct");
     }
 
 

@@ -1,5 +1,7 @@
 ﻿@model WDT_Assignment_2.Models.Cart 
 @*Ok, I think this means cart has been passed*@
+
+@{ decimal total =0;}
 <div>
     <div>
         <table class="table">
@@ -31,6 +33,7 @@
                     <td>
                          @Html.DisplayFor(modelItem => item.Product.Price)
                     </td>
+                   
                     <td>
                           <form asp-action="RemoveFromCart">
                             <input type="hidden" name="ProductID" value="@item.ProductID" />
@@ -43,6 +46,10 @@
             </tbody>
         </table>
     </div>
+     @foreach (var item in Model.Items) {
+        total +=item.Product.Price;
+    }
+   <span> <h3>Total: @total </h3> </span>
     <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerCheckOut">Check Out</a>
 </div>
  <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerStoreSelect">Change Store</a>

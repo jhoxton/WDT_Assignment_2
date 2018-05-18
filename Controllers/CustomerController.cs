@@ -29,15 +29,6 @@ namespace WDT_Assignment_2.Controllers
         // GET: /<controller>/
         public IActionResult CustomerIndex()
         {
-            //Product testProduct = new Product();
-            //testProduct.Name = "Rabbit";
-            //testProduct.ProductID = 1;
-            //testProduct.Price = 199.00m;
-            //test.Product = testProduct;
-
-            //test.StoreID = 1;
-
-            //cart.ItemsInCart.Add(test);
             return View();
         }
         public IActionResult CustomerStoreSelect()
@@ -57,17 +48,10 @@ namespace WDT_Assignment_2.Controllers
             }
             else
             {
-                return View();
+                //Do a script here to say "cart is empty"
+                return RedirectToAction(nameof(CustomerIndex));
             }
-            //Product testProduct = new Product();
-            //testProduct.Name = "Rabbit";
-            //testProduct.ProductID = 1;
-            //testProduct.Price = 199.00m;
-            //test.Product = testProduct;
 
-            //test.StoreID = 1;
-
-            //cart.ItemsInCart.Add(test);
 
         }
 
@@ -75,8 +59,6 @@ namespace WDT_Assignment_2.Controllers
 
         public async Task<IActionResult> RemoveFromCart(int productID, int storeID)
         {
-            //var cart = HttpContext.Session.GetCart();
-
 
             //Check cart quantity is only 1!!!!!
             var storeInventory = await _context.StoreInventory.Include(x => x.Product).Include(x => x.Store).
@@ -90,10 +72,7 @@ namespace WDT_Assignment_2.Controllers
             //return RedirectToAction("Index");
         }
 
-        public IActionResult CustomerPurchaseHistory()
-        {
-            return View();
-        }
+
 
         public async Task<IActionResult> CustomerDisplayInventory(string productName, int id)
         {
@@ -117,7 +96,7 @@ namespace WDT_Assignment_2.Controllers
 
         public async Task<IActionResult> AddToCart(int productID, int storeID)
         {
-            //var cart = HttpContext.Session.GetCart();
+
 
             var storeInventory = await _context.StoreInventory.Include(x => x.Product).Include(x => x.Store).
                 SingleAsync(x => x.ProductID == productID && x.StoreID == storeID);
@@ -133,15 +112,36 @@ namespace WDT_Assignment_2.Controllers
 
         public IActionResult CustomerCheckOut()
         {
+
+            //REMOVE ALL ITESM FROM CART HERE
+            //FIND A WAY TO GENERATE ORDER ID
+
+
+            //Gets subtracted from relevent stores then turned into AngularJS
+
             return View();
         }
         public IActionResult CustomerConfirmPurchase()
         {
-            
-            return View();
+            {
+
+                if (cart != null)
+                {
+                    return View(cart);
+                }
+                else
+                {
+                    //Do a script here to say "cart is empty"
+                    return RedirectToAction(nameof(CustomerIndex));
+                }
+
+            }
         }
 
-
+        public IActionResult CustomerPurchaseHistory()
+        {
+            return View();
+        }
 
     }
 }
