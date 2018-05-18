@@ -32,8 +32,11 @@
                          @Html.DisplayFor(modelItem => item.Product.Price)
                     </td>
                     <td>
-                         @* <a asp-action="RemoveFromCart" asp-route-id="@item">Remove Item</a> *@
- 
+                          <form asp-action="RemoveFromCart">
+                            <input type="hidden" name="ProductID" value="@item.ProductID" />
+                            <input type="hidden" name="StoreID" value="@item.StoreID" />
+                            <input type="submit" value="Remove from Cart" class ="linkButton"/>
+                        </form>
                     </td>
                 </tr>
                 }
@@ -42,4 +45,5 @@
     </div>
     <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerCheckOut">Check Out</a>
 </div>
+ <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerStoreSelect">Change Store</a>
 <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a>

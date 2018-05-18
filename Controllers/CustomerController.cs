@@ -72,22 +72,22 @@ namespace WDT_Assignment_2.Controllers
            
 
         }
-        //public async Task<IActionResult> RemoveFromCart(int productID, int storeID)
-        //{
-        //    var storeInventory = await _context.StoreInventory.Include(x => x.Product).Include(x => x.Store).
-        //        SingleAsync(x => x.ProductID == productID && x.StoreID == storeID);
 
-        //    storeInventory.Store.StoreInventory.Clear();
-        //    cart.RemoveItem(storeInventory);
 
-        //    return RedirectToAction(nameof(CustomerViewCart));
-        //}
-        public IActionResult RemoveFromCart(CartItem item)
+
+        public async Task<IActionResult> RemoveFromCart(int productID, int storeID)
         {
-            //Dosen't work! 
-            //cart.ItemsInCart.Remove(item);
-            //CustomerViewCart();
+            //var cart = HttpContext.Session.GetCart();
+
+            var storeInventory = await _context.StoreInventory.Include(x => x.Product).Include(x => x.Store).
+                SingleAsync(x => x.ProductID == productID && x.StoreID == storeID);
+
+            storeInventory.Store.StoreInventory.Clear();
+            cart.RemoveItem(storeInventory);
+
+            //HttpContext.Session.SetCart(cart);
             return RedirectToAction(nameof(CustomerViewCart));
+            //return RedirectToAction("Index");
         }
 
         public IActionResult CustomerPurchaseHistory()

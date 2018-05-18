@@ -45,16 +45,15 @@
                         <div asp-validation-for="StockLevel"></div> 
                     </td> *@
                     <td>
-                          <form asp-action="AddToCart">
-                        <input type="hidden" name="ProductID" value="@item.ProductID" />
-                        <input type="hidden" name="StoreID" value="@item.StoreID" />
-                        <input type="submit" value="Add to cart" />
-                     </form>
+                        <form asp-action="AddToCart">
+                            <input type="hidden" name="ProductID" value="@item.ProductID" />
+                            <input type="hidden" name="StoreID" value="@item.StoreID" />
+                            <input type="submit" value="Add to cart" />
+                        </form>
                     </td>
                 
                 </tr>
-                }
-             
+                }             
             </tbody>
         </table>
   
