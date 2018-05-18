@@ -22,10 +22,8 @@ namespace WDT_Assignment_2.Models
         {
             
             var index = Items.FindIndex(x => x.ProductID == item.ProductID && x.StoreID == item.StoreID);
-            if (index == -1)
-                Items.Remove(item);
-            else
-                Items[index] = item;
+            if (index != -1)
+                Items.RemoveAt(index);
         }
        
         //public ICollection<CartItem> ItemsInCart { get; set; } = new List<CartItem>();

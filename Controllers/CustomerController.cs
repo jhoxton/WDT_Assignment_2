@@ -79,6 +79,8 @@ namespace WDT_Assignment_2.Controllers
         {
             //var cart = HttpContext.Session.GetCart();
 
+
+            //Check cart quantity is only 1!!!!!
             var storeInventory = await _context.StoreInventory.Include(x => x.Product).Include(x => x.Store).
                 SingleAsync(x => x.ProductID == productID && x.StoreID == storeID);
 
@@ -122,6 +124,7 @@ namespace WDT_Assignment_2.Controllers
             var storeInventory = await _context.StoreInventory.Include(x => x.Product).Include(x => x.Store).
                 SingleAsync(x => x.ProductID == productID && x.StoreID == storeID);
 
+            storeInventory.StockLevel = 1;
             storeInventory.Store.StoreInventory.Clear();
             cart.AddItem(storeInventory);
 
