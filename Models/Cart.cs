@@ -5,8 +5,6 @@ namespace WDT_Assignment_2.Models
 {
     public class Cart
     {
-        //public const string CartSessionKey = "cart";
-
         public List<StoreInventory> Items { get; set; } = new List<StoreInventory>();
 
         public void AddItem(StoreInventory item)
@@ -25,11 +23,6 @@ namespace WDT_Assignment_2.Models
             if (index != -1)
                 Items.RemoveAt(index);
         }
-       
-        //public ICollection<CartItem> ItemsInCart { get; set; } = new List<CartItem>();
-        //public decimal TotalPrice { get; set; }
-
-
         
     }
 }

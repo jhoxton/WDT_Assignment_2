@@ -18,7 +18,7 @@ namespace WDT_Assignment_2.Controllers
         public static Cart cart = new Cart();
         //public CartItem test = new CartItem();
 
-        //static List<Product> intList = new List<Product>();
+        static List<Product> PurchaseHistory = new List<Product>();
 
         private readonly Context _context;
 
@@ -143,6 +143,16 @@ namespace WDT_Assignment_2.Controllers
             return View();
         }
 
+
+        public IActionResult AddToHistory(Cart cart)
+        {
+            foreach(var test in cart.Items) {
+                
+                PurchaseHistory.Add(test.Product);
+            }
+
+            return RedirectToAction(nameof(CustomerIndex));
+        }
     }
 }
 

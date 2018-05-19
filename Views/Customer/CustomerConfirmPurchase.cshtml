@@ -1,6 +1,7 @@
 ﻿@model WDT_Assignment_2.Models.Cart 
 @{ string id ="";}
 
+
         <div>
             <div>
                 <h3>Order Confirmed</h3>
@@ -33,13 +34,18 @@
                     <td>
                          @Html.DisplayFor(modelItem => item.Product.Price)
                     </td>
-                   
+                         <form asp-action="AddToHistory">
+                         <input type="submit" value="Home" />
+                        </form>
                 </tr>
                 }
             </tbody>
             </table>                
-            </div>
+            </div> 
+           
+
             <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerPurchaseHistory">View Purchase History</a> 
             <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a> 
         </div>
 
+        

@@ -27,6 +27,9 @@
     <Folder Include="Services\" />
     <Folder Include="Extenstions\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Controllers\Api\" />
+    <Folder Include="Models\DataManager\" />
+    <Folder Include="Models\Repository\" />
   </ItemGroup>
   <ItemGroup>
 
