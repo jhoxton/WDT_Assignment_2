@@ -1,7 +1,11 @@
 ﻿@model WDT_Assignment_2.Models.Cart 
+@{ string id ="";}
+
         <div>
             <div>
                 <h3>Order Confirmed</h3>
+                <h4>Order ID: id</h4>
+            
                          <table class="table">
                 <thead>
                     <tr>
@@ -14,34 +18,25 @@
 
                         <th>
                             Quantity   
-                         </th>  
-                         <th>
-                            Date and Time 
-                         </th>    
+                         </th>   
 
                     </tr>
-                </thead>
-                <tbody>
-                    @*
-                      Foreach loop to dynamically generate products here  
-                   *@
-                        <tr>
-                            <td>
-                                SAMPLE ID
-                            </td>
-                            <td>
-                                SAMPLE NAME
-                            </td>
-                            <td>
-                                SAMPLE QUNATITY
-                                @* Need to set max value as current stores stock level*@
-                            </td>
-                           <td>
-                                SAMPLE DATE AND TIME
-                            </td>
-                        </tr>
-
-                </tbody>
+               <tbody>
+                @foreach(var item in Model.Items) { 
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.ProductID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                         @Html.DisplayFor(modelItem => item.Product.Price)
+                    </td>
+                   
+                </tr>
+                }
+            </tbody>
             </table>                
             </div>
             <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerPurchaseHistory">View Purchase History</a> 

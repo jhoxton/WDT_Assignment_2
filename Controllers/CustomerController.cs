@@ -135,8 +135,8 @@ namespace WDT_Assignment_2.Controllers
                     return RedirectToAction(nameof(CustomerIndex));
                 }
 
+
             }
-        }
 
         public IActionResult CustomerPurchaseHistory()
         {
