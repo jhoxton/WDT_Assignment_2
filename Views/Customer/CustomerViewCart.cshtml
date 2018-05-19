@@ -31,7 +31,7 @@
                         @Html.DisplayFor(modelItem => item.Product.Name)
                     </td>
                     <td>
-                         @Html.DisplayFor(modelItem => item.Product.Price)
+                        $ @Html.DisplayFor(modelItem => item.Product.Price)
                     </td>
                    
                     <td>
@@ -49,7 +49,7 @@
      @foreach (var item in Model.Items) {
         total +=item.Product.Price;
     }
-   <span> <h3>Total: @total </h3> </span>
+   <span> <h3>Total: $@total </h3> </span>
     <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerCheckOut">Check Out</a>
 </div>
  <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerStoreSelect">Change Store</a>

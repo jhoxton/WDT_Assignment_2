@@ -137,7 +137,7 @@ namespace WDT_Assignment_2.Controllers
 
 
             }
-
+        }
         public IActionResult CustomerPurchaseHistory()
         {
             return View();

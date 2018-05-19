@@ -18,9 +18,9 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Product.Name)
                     </th>
-                 @*   <th>
-                        @Html.DisplayNameFor(model => model.StockLevel)
-                    </th> *@
+                   <th>
+                        Price
+                    </th> 
                     <th>
                         Quantity in Stock
                     </th>
@@ -36,6 +36,9 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+             <td>
+                      $  @Html.DisplayFor(modelItem => item.Product.Price)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.StockLevel)
