@@ -16,7 +16,6 @@ namespace WDT_Assignment_2.Controllers
     public class CustomerController : Controller
     {
         public static Cart cart = new Cart();
-        //public CartItem test = new CartItem();
 
         static List<Product> PurchaseHistory = new List<Product>();
 

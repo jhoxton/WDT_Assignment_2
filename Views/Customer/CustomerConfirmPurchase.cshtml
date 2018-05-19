@@ -34,18 +34,17 @@
                     <td>
                          @Html.DisplayFor(modelItem => item.Product.Price)
                     </td>
-                         <form asp-action="AddToHistory">
-                         <input type="submit" value="Home" />
-                        </form>
+                         
                 </tr>
                 }
             </tbody>
             </table>                
             </div> 
            
-
+            <form asp-action="AddToHistory">
             <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerPurchaseHistory">View Purchase History</a> 
             <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a> 
+            </form>
         </div>
 
         

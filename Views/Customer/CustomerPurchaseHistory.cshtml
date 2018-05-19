@@ -1,1 +1,41 @@
-﻿
+﻿@{
+    ViewBag.Title = "Purchase Hiistory";
+}
+
+<script src="/js/angular.min.js"></script>
+
+<div ng-app="myApp" ng-controller="orderCtrl">
+    <h2>Purchase History</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product ID</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Purchase time and date</th>
+            </tr>
+        <thead>
+        <tbody>
+            <tr ng-repeat="x in orders">
+                <td>{{ x.id }}</td>
+                <td>{{ x.ProductId }}</td>
+                <td>{{ x.Name }}</td>
+                <td>{{ x.Price | currency }}</td>
+                <td>{{ x.Date | date:"dd/MM/yyyy" }}</td>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("orderCtrl", function($scope, $http) {
+        $http.get("/api/orders").then(function (response) { $scope.orders = response.data; });
+    });
+</script>
+
+
+<a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a> 
+        
