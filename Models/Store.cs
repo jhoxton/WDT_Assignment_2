@@ -10,6 +10,5 @@ namespace WDT_Assignment_2.Models
 
         public ICollection<StoreInventory> StoreInventory { get; set; } = new List<StoreInventory>();
 
-        //public List<StoreInventory> StoreInventory { get; set; } = new List<StoreInventory>();
     }
 }

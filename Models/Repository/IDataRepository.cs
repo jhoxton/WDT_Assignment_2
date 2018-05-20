@@ -1,14 +1,14 @@
-﻿//using System;
-//using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-//namespace WDT_Assignment_2.Models.Repository
-//{
-//    public interface IDataRepository<TEntity, TKey> where TEntity : class
-//    {
-//        IEnumerable<TEntity> GetAll();
-//        TEntity Get(TKey id);
-//        TKey Add(TEntity item);
-//        TKey Update(TKey id, TEntity item);
-//        TKey Delete(TKey id);
-//    }
-//}
+namespace WDT_Assignment_2.Models.Repository
+{
+    public interface IDataRepository<TEntity, TKey> where TEntity : class
+    {
+        IEnumerable<TEntity> GetAll();
+        TEntity Get(TKey id);
+        TKey Add(TEntity item);
+        TKey Update(TKey id, TEntity item);
+        TKey Delete(TKey id);
+    }
+}

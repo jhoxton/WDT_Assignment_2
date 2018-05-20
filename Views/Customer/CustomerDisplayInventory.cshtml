@@ -43,10 +43,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.StockLevel)
                     </td>
-                  @*  <td>
-                        <input class="form-control" type="number" min="1" />
-                        <div asp-validation-for="StockLevel"></div> 
-                    </td> *@
+
                     <td>
                         <form asp-action="AddToCart">
                             <input type="hidden" name="ProductID" value="@item.ProductID" />

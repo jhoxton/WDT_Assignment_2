@@ -1,7 +1,8 @@
 ﻿@model WDT_Assignment_2.Models.StockRequest 
+@* Based on the ContosoUniversity example*@
 @{ ViewData["Title"] = "Create New Stock Request"; }
 <h3>Create New Stock Request</h3>
-<hr/> @* Based on the ContosoUniversity example*@
+<hr/> 
 <div class="row">
     <div class="col-md-4">
         <form asp-action="FranchiseStockRequest">
@@ -24,53 +25,3 @@
         </form>
     </div>
 </div>
-@*
-<body>
-     <h3>Select New Item for Stock Request</h3>
-        <h4>Owner Inventory</h4>
-           
-      <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    ProductID
-                </th>
-                <th>
-                    Product Name
-                </th>
-                <th>
-                   Current Stock Level
-                </th>
-                <th>
-                    Set Stock Level       
-                 </th>
-
-            </tr>
-        </thead>
-        <tbody>
-
-                <tr>
-                    <td>
-                        SAMPLE ID
-                    </td>
-                    <td>
-                        SAMPLE NAME
-                    </td>
-                    <td>
-                        SAMPLE QUANTITY
-                    </td>
-                    <td>
-                        
-                    <a  asp-area="" asp-controller="Franchise" asp-action="FranchiseSetStock">Process Stock Request(dynamic)</a>
-
-                      
-                        
-                    </td>
-                </tr>
-
-        </tbody>
-    </table>
-    <div> <a class="linkButton" asp-area="" asp-controller="Franchise" asp-action="FranchiseIndex">Home Page</a> </div>
-</body>
-</html>
-*@

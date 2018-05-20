@@ -16,7 +16,7 @@ namespace WDT_Assignment_2.Controllers
     public class CustomerController : Controller
     {
         public static Cart cart = new Cart();
-
+        //Static Cart object. Secure and stable but NOT scaleable. Can only support one customer. 
         static List<Product> PurchaseHistory = new List<Product>();
 
         private readonly Context _context;
@@ -25,22 +25,19 @@ namespace WDT_Assignment_2.Controllers
         {
             _context = context;
         }
-        // GET: /<controller>/
         public IActionResult CustomerIndex()
         {
             return View();
         }
         public IActionResult CustomerStoreSelect()
         {
-
             return View();
         }
 
 
-        // GET: Cart
+        // GET: Cart. Won't return cart page if Cart object is empty
         public IActionResult CustomerViewCart()
         {
-
             if (cart != null)
             {
                 return View(cart);
@@ -50,28 +47,19 @@ namespace WDT_Assignment_2.Controllers
                 //Do a script here to say "cart is empty"
                 return RedirectToAction(nameof(CustomerIndex));
             }
-
-
         }
-
-
 
         public async Task<IActionResult> RemoveFromCart(int productID, int storeID)
         {
-
-            //Check cart quantity is only 1!!!!!
             var storeInventory = await _context.StoreInventory.Include(x => x.Product).Include(x => x.Store).
-                SingleAsync(x => x.ProductID == productID && x.StoreID == storeID);
+            SingleAsync(x => x.ProductID == productID && x.StoreID == storeID);
 
             storeInventory.Store.StoreInventory.Clear();
             cart.RemoveItem(storeInventory);
 
-            //HttpContext.Session.SetCart(cart);
             return RedirectToAction(nameof(CustomerViewCart));
-            //return RedirectToAction("Index");
+
         }
-
-
 
         public async Task<IActionResult> CustomerDisplayInventory(string productName, int id)
         {
@@ -84,19 +72,14 @@ namespace WDT_Assignment_2.Controllers
                 ViewBag.ProductName = productName;
             }
             storeInvSelect = storeInvSelect.OrderBy(x => x.Product.Name);
-
-
             ViewBag.StoreName = (await _context.Stores.SingleAsync(x => x.StoreID == id)).Name;
 
             return View(await storeInvSelect.ToListAsync());
-
         }
 
 
         public async Task<IActionResult> AddToCart(int productID, int storeID)
         {
-
-
             var storeInventory = await _context.StoreInventory.Include(x => x.Product).Include(x => x.Store).
                 SingleAsync(x => x.ProductID == productID && x.StoreID == storeID);
 
@@ -104,18 +87,12 @@ namespace WDT_Assignment_2.Controllers
             storeInventory.Store.StoreInventory.Clear();
             cart.AddItem(storeInventory);
 
-            //HttpContext.Session.SetCart(cart);
             return RedirectToAction(nameof(CustomerViewCart));
-            //return RedirectToAction("Index");
+
         }
 
         public IActionResult CustomerCheckOut()
         {
-
-            //REMOVE ALL ITESM FROM CART HERE
-            //FIND A WAY TO GENERATE ORDER ID
-
-
             //Gets subtracted from relevent stores then turned into AngularJS
 
             return View();
@@ -130,7 +107,7 @@ namespace WDT_Assignment_2.Controllers
                 }
                 else
                 {
-                    //Do a script here to say "cart is empty"
+                   
                     return RedirectToAction(nameof(CustomerIndex));
                 }
 

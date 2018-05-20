@@ -1,50 +1,41 @@
 ﻿@model WDT_Assignment_2.Models.Cart 
 @{ string id ="";}
-
-
-        <div>
-            <div>
-                <h3>Order Confirmed</h3>
-                <h4>Order ID: id</h4>
-            
-                         <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            ProductID
-                        </th>
-                        <th>
-                            Product Name
-                        </th>
-
-                        <th>
-                            Quantity   
-                         </th>   
-
-                    </tr>
-               <tbody>
-                @foreach(var item in Model.Items) { 
+<div>
+    <div>
+        <h3>Order Confirmed</h3>
+        <h4>Order ID: id</h4>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Product.ProductID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Product.Name)
-                    </td>
-                    <td>
-                         @Html.DisplayFor(modelItem => item.Product.Price)
-                    </td>
-                         
+                    <th>
+                        ProductID
+                    </th>
+                    <th>
+                        Product Name
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
                 </tr>
-                }
-            </tbody>
-            </table>                
-            </div> 
-           
-            <form asp-action="AddToHistory">
-            <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerPurchaseHistory">View Purchase History</a> 
-            <a class ="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a> 
-            </form>
-        </div>
-
-        
+                <tbody>
+                    @foreach(var item in Model.Items) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.ProductID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.Price)
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+        </table>
+    </div>
+    <form asp-action="AddToHistory">
+        <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerPurchaseHistory">View Purchase History</a>
+        <a class="linkButton" asp-area="" asp-controller="Customer" asp-action="CustomerIndex">Home</a>
+    </form>
+</div>

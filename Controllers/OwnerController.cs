@@ -23,34 +23,22 @@ namespace WDT_Assignment_2.Controllers
         }
 
         //This method taken from Lecture 6 code example
-
-        // Auto-parsed variables coming in from the request - there is a form on the page to send this data.
         public async Task<IActionResult> OwnerInventory(string productName)
         {
-            // Eager loading the Product table - join between OwnerInventory and the Product table.
             var query = _context.OwnerInventory.Include(x => x.Product).Select(x => x);
 
             if (!string.IsNullOrWhiteSpace(productName))
             {
-                // Adding a where to the query to filter the data.
-                // Note for the first request productName is null thus the where is not always added.
                 query = query.Where(x => x.Product.Name.Contains(productName));
-
-                // Storing the search into ViewBag to populate the textbox with the same value for convenience.
                 ViewBag.ProductName = productName;
             }
-
-            // Adding an order by to the query for the Product name.
             query = query.OrderBy(x => x.Product.Name);
-
-            // Passing a List<OwnerInventory> model object to the View.
             return View(await query.ToListAsync());
         }
 
         // GET: StockRequests
         public async Task<IActionResult> OwnerProcessStockRequest()
         {
-            //Creates a local var of StockRequests from _context
             var StockRequests = _context.StockRequests;
 
             foreach (var getStoreName in StockRequests)
@@ -76,7 +64,6 @@ namespace WDT_Assignment_2.Controllers
                 }
             }
 
-            //Sends said var to the View
             return View(await StockRequests.ToListAsync());
         }
 
@@ -111,7 +98,6 @@ namespace WDT_Assignment_2.Controllers
                 }
 
                 //Updates the store inventory
-                // await UpdateStore(requestProcess.StoreID, requestProcess);
 
                 //Removes the stock request
                 _context.StockRequests.Remove(requestProcess);
@@ -121,21 +107,6 @@ namespace WDT_Assignment_2.Controllers
 
             return View();
         }
-
-        /*
-        public async Task<String> UpdateStore(int id, StockRequest requestProcess)
-        {
-
-            int storeID = requestProcess.StoreID;
-
-            var storeInventory = await _context.StoreInventory.SingleAsync(x => x.StoreID == storeID && x.ProductID == id);
-
-            storeInventory.StockLevel = requestProcess.Quantity + storeInventory.StockLevel;
-
-            await _context.SaveChangesAsync();
-            return " ";
-        }
-        */
 
         public IActionResult OwnerIndex()
         {
@@ -158,7 +129,6 @@ namespace WDT_Assignment_2.Controllers
                 return NotFound();
             }
             //Finds and sets the name of the selected product
-            /////
             foreach (Product productCheck in _context.Products)
             {
                 if (product.ProductID == productCheck.ProductID)
@@ -166,7 +136,6 @@ namespace WDT_Assignment_2.Controllers
                     product.Product = productCheck;
                 }
             }
-            //////
             return View(product);
         }
         [HttpPost, ActionName("OwnerSetStock")]
@@ -190,26 +159,20 @@ namespace WDT_Assignment_2.Controllers
                 }
                 catch (DbUpdateException /* ex */ )
                 {
-                    //Log the error (uncomment ex variable name and write a log.)
-                    ModelState.AddModelError("", "Unable to save changes.");
+                    //Returns error if owner doesn't have enough stock
+                    ModelState.AddModelError("", "Unable to process stock request");
                 }
                 return RedirectToAction(nameof(OwnerIndex));
             }
-            //PopulateDepartmentsDropDownList(courseToUpdate.DepartmentID);
             return View(productToUpdate);
         }
 
 
         public async Task<IActionResult> UpdateOwnerStock(int id, int quantity)
         {
-            //Updating OwnerInventory here...
-
             int levelToUpdate = quantity;
             int prodToUpdate = id;
-            //int levelToUpdate = 100;
-            //prodToUpdate = 1;
 
-            //Checking valid owner stock level
             foreach (var ownerQuant in _context.OwnerInventory.ToList())
             {
                 if (levelToUpdate > ownerQuant.StockLevel)
